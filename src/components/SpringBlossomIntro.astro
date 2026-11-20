@@ -1,0 +1,200 @@
+---
+// Spring Blossom Intro Component
+---
+
+<div id="spring-blossom-intro" class="spring-intro-overlay" aria-hidden="true">
+  <div class="intro-bg-gradient"></div>
+
+  <!-- Decorative Blossom Petals in Animation -->
+  <div class="intro-petals-wrap">
+    <span class="intro-petal p1">🌸</span>
+    <span class="intro-petal p2">🌸</span>
+    <span class="intro-petal p3">🌸</span>
+    <span class="intro-petal p4">🌸</span>
+    <span class="intro-petal p5">🌸</span>
+  </div>
+
+  <div class="intro-center-content">
+    <div class="intro-logo-glow"></div>
+    <div class="intro-brand-hanzi">杏花云</div>
+    <div class="intro-brand-en">XINGHUA CLOUD</div>
+    <div class="intro-theme-sub">BLOSSOM GIRL MAX · 杏花少女</div>
+  </div>
+
+  <button type="button" id="skip-intro-btn" class="skip-intro-btn" aria-label="跳过入场动画">
+    跳过动画 ✕
+  </button>
+</div>
+
+<script is:inline>
+  (function() {
+    const intro = document.getElementById('spring-blossom-intro');
+    const skipBtn = document.getElementById('skip-intro-btn');
+    if (!intro) return;
+
+    // Check if reduced motion is requested or already shown in this session
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasSeen = sessionStorage.getItem('seen_spring_intro_c03');
+
+    if (isReduced || hasSeen) {
+      intro.style.display = 'none';
+      return;
+    }
+
+    sessionStorage.setItem('seen_spring_intro_c03', 'true');
+
+    function closeIntro() {
+      intro.classList.add('intro-fade-out');
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 400);
+    }
+
+    if (skipBtn) {
+      skipBtn.addEventListener('click', closeIntro);
+    }
+
+    // Auto close: 1.3s for desktop, 0.7s for mobile
+    const isMobile = window.innerWidth <= 768;
+    const duration = isMobile ? 750 : 1300;
+
+    setTimeout(closeIntro, duration);
+  })();
+</script>
+
+<style>
+  .spring-intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FFF9F0 0%, #F8E1E9 50%, #FFF9F0 100%);
+    overflow: hidden;
+    pointer-events: auto;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+
+  .intro-fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .intro-bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(244, 191, 208, 0.4) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .intro-center-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: introContentFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .intro-brand-hanzi {
+    font-size: clamp(38px, 6vw, 64px);
+    font-family: var(--font-serif);
+    font-weight: 800;
+    color: var(--color-cta);
+    letter-spacing: 0.12em;
+    text-shadow: 0 4px 16px rgba(169, 80, 112, 0.2);
+    margin-bottom: 6px;
+  }
+
+  .intro-brand-en {
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.25em;
+    margin-bottom: 8px;
+  }
+
+  .intro-theme-sub {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-petal-rose);
+    letter-spacing: 0.15em;
+  }
+
+  .skip-intro-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-sakura-pink);
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+  }
+
+  .skip-intro-btn:hover {
+    color: var(--color-cta);
+    background: #FFFFFF;
+  }
+
+  .intro-petals-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .intro-petal {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    animation: introPetalFall 1.2s ease-in-out forwards;
+  }
+
+  .p1 { left: 20%; animation-delay: 0.1s; }
+  .p2 { left: 45%; animation-delay: 0.25s; }
+  .p3 { left: 70%; animation-delay: 0.15s; }
+  .p4 { left: 30%; animation-delay: 0.4s; }
+  .p5 { left: 85%; animation-delay: 0.3s; }
+
+  @keyframes introPetalFall {
+    0% {
+      top: -20px;
+      opacity: 0;
+      transform: rotate(0deg) scale(0.8);
+    }
+    30% {
+      opacity: 0.7;
+    }
+    80% {
+      opacity: 0.7;
+    }
+    100% {
+      top: 90vh;
+      opacity: 0;
+      transform: rotate(180deg) scale(1.1);
+    }
+  }
+
+  @keyframes introContentFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.94) translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spring-intro-overlay {
+      display: none !important;
+    }
+  }
+</style>

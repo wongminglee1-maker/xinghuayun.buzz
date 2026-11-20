@@ -1,0 +1,242 @@
+---
+import AnzuIllustration from './AnzuIllustration.astro';
+
+const dialogues = {
+  welcome: "欢迎来到杏花云！我是杏子，接下来让我陪你一起探索轻盈的全球网络旅程吧。",
+  brand: "不一定要花很多预算，了解自己的网络需求，才能选择真正适合自己的套餐哦。",
+  plans: "从每年12元的轻量方案，到每月1000GB的专业版，我们可以一起看看哪一款更适合你的使用需求。",
+  pack: "如果你只是偶尔使用网络，可以了解一下365天流量包。不过要记得，它拥有1000GB总流量，并不是每个月都有1000GB哦。",
+  clients: "Clash客户端拥有不同版本，选择前记得确认VLESS协议与订阅格式是否兼容。",
+  calculator: "通过真实的每日使用习惯来估算流量，才不会为多余或不足的月费多花冤枉钱哦。",
+  faq: "还有不清楚的地方吗？我们可以一起看看套餐、节点和客户端的常见问题。"
+};
+---
+
+<div id="anzu-dialogue-widget" class="anzu-dialogue-container" aria-live="polite">
+  <div class="anzu-dialogue-card">
+    <button type="button" class="anzu-close-btn" id="anzu-dialogue-close" aria-label="关闭杏子陪伴对话">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="anzu-dialogue-body">
+      <div class="anzu-avatar-wrap">
+        <AnzuIllustration state="welcome" size={68} />
+      </div>
+      <div class="anzu-speech-wrap">
+        <div class="anzu-speaker-meta">
+          <span class="anzu-speaker-name">杏子 · ANZU</span>
+          <span class="anzu-system-tag">品牌向导（非人工客服）</span>
+        </div>
+        <p class="anzu-dialogue-text" id="anzu-dialogue-content">
+          {dialogues.welcome}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="anzu-reopen-pill" id="anzu-dialogue-reopen" style="display: none;" aria-label="展开杏子对话向导">
+    <span class="anzu-reopen-icon">🌸</span>
+    <span class="anzu-reopen-text">杏子向导</span>
+  </button>
+</div>
+
+<script is:inline define:vars={{ dialogues }}>
+  (function() {
+    const widget = document.getElementById('anzu-dialogue-widget');
+    const content = document.getElementById('anzu-dialogue-content');
+    const closeBtn = document.getElementById('anzu-dialogue-close');
+    const reopenBtn = document.getElementById('anzu-dialogue-reopen');
+    const card = widget ? widget.querySelector('.anzu-dialogue-card') : null;
+
+    if (!widget || !content || !closeBtn || !reopenBtn || !card) return;
+
+    let isClosed = false;
+
+    closeBtn.addEventListener('click', () => {
+      isClosed = true;
+      card.style.display = 'none';
+      reopenBtn.style.display = 'inline-flex';
+    });
+
+    reopenBtn.addEventListener('click', () => {
+      isClosed = false;
+      card.style.display = 'flex';
+      reopenBtn.style.display = 'none';
+    });
+
+    // Observer to change dialogue based on sections
+    const sectionMap = [
+      { id: 'brand-advantages', text: dialogues.brand },
+      { id: 'pricing-plans', text: dialogues.plans },
+      { id: 'traffic-pack-section', text: dialogues.pack },
+      { id: 'client-guide', text: dialogues.clients },
+      { id: 'traffic-calculator', text: dialogues.calculator },
+      { id: 'faq-section', text: dialogues.faq },
+      { id: 'hero-section', text: dialogues.welcome }
+    ];
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (isClosed) return;
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const matched = sectionMap.find(item => item.id === entry.target.id);
+            if (matched && content.textContent.trim() !== matched.text) {
+              content.textContent = matched.text;
+            }
+          }
+        });
+      }, { threshold: 0.25 });
+
+      sectionMap.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el) observer.observe(el);
+      });
+    }
+  })();
+</script>
+
+<style>
+  .anzu-dialogue-container {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+    z-index: 90;
+    max-width: 380px;
+    pointer-events: none;
+  }
+
+  .anzu-dialogue-card {
+    pointer-events: auto;
+    background: rgba(255, 249, 240, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--color-sakura-pink);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 28px -4px rgba(169, 80, 112, 0.18), 0 4px 12px -2px rgba(82, 107, 83, 0.08);
+    padding: 14px 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    animation: anzuFloat 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes anzuFloat {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .anzu-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .anzu-close-btn:hover {
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+  }
+
+  .anzu-dialogue-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .anzu-avatar-wrap {
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+
+  .anzu-speech-wrap {
+    flex: 1;
+    min-width: 0;
+    padding-right: 12px;
+  }
+
+  .anzu-speaker-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .anzu-speaker-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .anzu-system-tag {
+    font-size: 10px;
+    background: var(--color-green-card);
+    color: var(--color-forest-green);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .anzu-dialogue-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  .anzu-reopen-pill {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 249, 240, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--color-sakura-pink);
+    border-radius: var(--radius-full);
+    color: var(--color-cta);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(169, 80, 112, 0.15);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .anzu-reopen-pill:hover {
+    background: var(--color-bg-tint);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .anzu-dialogue-container {
+      bottom: 74px;
+      right: 12px;
+      left: 12px;
+      max-width: none;
+    }
+    .anzu-dialogue-card {
+      padding: 10px 12px;
+    }
+    .anzu-avatar-wrap {
+      display: none;
+    }
+    .anzu-dialogue-text {
+      font-size: 12.5px;
+    }
+  }
+</style>

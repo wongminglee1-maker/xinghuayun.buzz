@@ -1,0 +1,98 @@
+{
+  "brandName": "杏花云",
+  "brandNameEn": "XingHua Cloud",
+  "projectCode": "XingHuaCloud-C03",
+  "domain": "https://xinghuayun.buzz",
+  "affiliateUrl": "https://varnexa.lingdongaff.com/#/?code=dNrfos55",
+  "affiliateRel": "sponsored nofollow noopener noreferrer",
+  "affiliateDisclosure": "本站为杏花云（XingHua Cloud）第三方推广与技术导购页面，部分购买链接含有推广返佣标识（Affiliate）。所展示的套餐价格、配置信息均基于商家公开数据整理，购买前请以收银台实际信息为准。",
+  "positioning": "超高性价比机场 · 轻量化全球网络连接 · 经济型大流量订阅服务",
+  "heroH1": "杏花云 XingHua Cloud · 轻盈连接全球数字生活",
+  "visualTitle": "Blossom Girl · 杏花少女",
+  "heroSubtitle": "VLESS协议 · 灵活流量 · 全球节点 · 多平台连接",
+  "heroEnglish": "LET YOUR DIGITAL WORLD BLOOM",
+  "protocol": "VLESS",
+  "multiplier": "商家宣称全节点 1 倍率（实际以节点列表标记为准）",
+  "speedLimit": "商家宣称不限速（指无人工带宽锁限，实际速率取决于物理网络与服务器负载，非无限带宽）",
+  "optimization": "商家宣称三网优化（具体线路待核实，非独享专线）",
+  "deviceLimit": "2–5 台（按套餐区分，不支持不限设备）",
+  "nodes": [
+    {
+      "code": "hk",
+      "name": "中国香港 (Hong Kong)",
+      "region": "亚太核心",
+      "delay": "30ms - 60ms 极低延迟",
+      "suitableFor": "日常网页、中文搜索、低延迟交互",
+      "desc": "地理位置贴近大陆网络，延迟表现优异，适合日常网页查阅、即时通讯与低延迟操作。"
+    },
+    {
+      "code": "jp",
+      "name": "日本 (Japan)",
+      "region": "亚太枢纽",
+      "delay": "50ms - 90ms 优质连接",
+      "suitableFor": "主流流媒体、动漫视听、亚太云服务",
+      "desc": "连接主流亚太云服务与流媒体平台，适合日韩视听、游戏联机以及亚太区域开发者访问。"
+    },
+    {
+      "code": "sg",
+      "name": "新加坡 (Singapore)",
+      "region": "东南亚枢纽",
+      "delay": "60ms - 100ms 均衡稳定",
+      "suitableFor": "国际应用、主流AI服务接口、跨境办公",
+      "desc": "东南亚国际出海中继，对于国际主流 AI 工具接入与跨境办公协同具备良好路由。"
+    },
+    {
+      "code": "us",
+      "name": "美国 (United States)",
+      "region": "北美核心",
+      "delay": "140ms - 200ms 大带宽出口",
+      "suitableFor": "AI开发、开源社区、大文件下载与全球内容",
+      "desc": "拥有充沛的海外带宽资源与国际互联网内容原生访问权限，适合 AI 对话、学术资源与全球视听。"
+    }
+  ],
+  "advantages": [
+    {
+      "id": "01",
+      "title": "低门槛订阅价格",
+      "desc": "最低参考月付 ¥3 起、年付 ¥12 起（折合每月仅 ¥1），为学生、初学者与预算敏感型用户提供极具亲和力的入门选择。",
+      "tag": "低门槛 · 亲民"
+    },
+    {
+      "id": "02",
+      "title": "千GB大流量方案",
+      "desc": "专业版方案提供每月 1000GB 充沛数据资料，满足高清流媒体串流、大文件数据下载与多终端高频次使用需求。",
+      "tag": "1000GB · 充沛"
+    },
+    {
+      "id": "03",
+      "title": "现代 VLESS 网络协议",
+      "desc": "采用现代化的轻量级 VLESS 代理协议，减少协议冗余开销，支持主流现代内核与主流通用订阅转换格式。",
+      "tag": "VLESS · 轻量高效"
+    },
+    {
+      "id": "04",
+      "title": "全球多地区节点覆盖",
+      "desc": "收录中国香港、日本、新加坡与美国等常用地区节点资料，满足日常浏览、流媒体娱乐与全球数字服务访问需求。",
+      "tag": "四地核心 · 实用"
+    },
+    {
+      "id": "05",
+      "title": "多平台客户端广泛适配",
+      "desc": "支持 Windows、macOS、Android 与 iOS 设备，可搭配 Clash Verge Rev、Mihomo、Flclash、Sing-box 等现代客户端。",
+      "tag": "多端互联 · 顺畅"
+    },
+    {
+      "id": "06",
+      "title": "灵活周期与365天流量包",
+      "desc": "不仅支持月付、季付、半年付与年付，还提供 365 天 1000GB 一次性应急流量包，为低频偶尔使用的用户免去月费浪费。",
+      "tag": "灵活周期 · 自由"
+    }
+  ],
+  "disclaimers": {
+    "speed": "全站所有不限速描述仅指商家宣称未施加特定软件层面的固定限速阀值，网络实际速率受本地运营商出口、国际骨干拥堵、物理距离与服务器负载综合影响，绝非无限带宽保证。",
+    "nodes": "节点延迟为基于物理距离的理论参考范围，本站未建立实时探针，不保证所有节点 100% 在线或永久零丢包。",
+    "ai_media": "流媒体（Netflix/Disney+/YouTube）与主流 AI 工具（ChatGPT等）的风控机制随时可能变动，商家公开资料宣称支持主流应用，但实际可用性受服务方 IP 封锁策略影响，请理性测试。",
+    "coupons": "目前杏花云官方暂未发布经核实有效的通用促销优惠码，任何声称提供大额折扣码的第三方渠道均需注意风险，请以官方支付结算页面为准。",
+    "affiliate": "本站为推广导购网站，所有购买操作将跳转至服务商收银台，请在购买前仔细阅读商家的服务条款（ToS）及退款政策。"
+  }
+}

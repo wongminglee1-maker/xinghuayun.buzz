@@ -1,0 +1,322 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-inner container">
+    <!-- Brand Logo / Typographic Mark -->
+    <a href="/" class="brand-logo" aria-label="杏花云 XingHua Cloud 首页">
+      <span class="blossom-icon">🌸</span>
+      <div class="brand-names">
+        <span class="brand-zh">杏花云</span>
+        <span class="brand-en">XINGHUA CLOUD</span>
+      </div>
+      <span class="brand-tag">Blossom Girl MAX</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="全站桌面导航">
+      <ul class="nav-links">
+        <li><a href="/" class={currentPath === '/' ? 'active' : ''}>首页</a></li>
+        <li><a href="/#brand-story">杏花物语</a></li>
+        <li><a href="/#global-nodes">全球节点</a></li>
+        <li><a href="/#pricing-plans">套餐价格</a></li>
+        <li><a href="/#traffic-calculator">流量计算</a></li>
+        <li><a href="/clients/" class={currentPath.startsWith('/clients') ? 'active' : ''}>Clash指南</a></li>
+        <li><a href="/articles/" class={currentPath.startsWith('/articles') ? 'active' : ''}>阅读文章</a></li>
+        <li><a href="/about/" class={currentPath === '/about/' ? 'active' : ''}>关于杏花云</a></li>
+        <li><a href="/#faq-section">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right CTA Button -->
+    <div class="header-actions">
+      <a
+        href={affiliateUrl}
+        target="_blank"
+        rel="sponsored nofollow noopener noreferrer"
+        class="btn-primary nav-cta-btn"
+        aria-label="立即前往杏花云官方授权购买页面"
+      >
+        <span>立即购买</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="展开或关闭移动端菜单">
+        <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">🌸 网站导航</span>
+      <button type="button" class="drawer-close-btn" id="drawer-close" aria-label="关闭导航">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="/" class={currentPath === '/' ? 'active' : ''}>首页</a></li>
+      <li><a href="/#brand-story">杏花物语与六大优势</a></li>
+      <li><a href="/#global-nodes">全球网络节点</a></li>
+      <li><a href="/#pricing-plans">六款套餐与价格</a></li>
+      <li><a href="/#plan-advisor">智能套餐助手</a></li>
+      <li><a href="/#traffic-calculator">流量预算计算器</a></li>
+      <li><a href="/clients/">Clash与客户端指南</a></li>
+      <li><a href="/articles/">原创阅读中心</a></li>
+      <li><a href="/about/">关于杏花云</a></li>
+      <li><a href="/#faq-section">常见问题 FAQ</a></li>
+    </ul>
+    <div class="mobile-drawer-cta">
+      <a
+        href={affiliateUrl}
+        target="_blank"
+        rel="sponsored nofollow noopener noreferrer"
+        class="btn-primary"
+        style="width: 100%; text-align: center;"
+      >
+        前往官方收银台购买
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (function() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('drawer-close');
+    const drawer = document.getElementById('mobile-drawer');
+    const drawerLinks = drawer ? drawer.querySelectorAll('a') : [];
+
+    function openDrawer() {
+      if (drawer) drawer.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (drawer) drawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    if (toggleBtn) toggleBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+  })();
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(255, 249, 240, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-border-subtle);
+    z-index: 100;
+    transition: background 0.3s ease;
+  }
+
+  .header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .blossom-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(217, 130, 164, 0.3));
+  }
+
+  .brand-names {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-zh {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-cta);
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    font-family: var(--font-serif);
+  }
+
+  .brand-en {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.16em;
+  }
+
+  .brand-tag {
+    display: inline-block;
+    font-size: 10px;
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+    padding: 2px 7px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(217, 130, 164, 0.3);
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--color-text-main);
+    padding: 6px 4px;
+    position: relative;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--color-cta);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-cta);
+    border-radius: 2px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-cta-btn {
+    padding: 9px 20px !important;
+    font-size: 14px !important;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    padding: 8px;
+    color: var(--color-text-main);
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    display: none;
+  }
+
+  @media (max-width: 1080px) {
+    .desktop-nav {
+      display: none;
+    }
+    .brand-tag {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: flex;
+    }
+    
+    .mobile-drawer {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 82%;
+      max-width: 340px;
+      height: 100vh;
+      background: #FFFDF9;
+      box-shadow: -6px 0 24px rgba(73, 60, 64, 0.15);
+      z-index: 200;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 24px 20px;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.is-open {
+      right: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      margin-bottom: 16px;
+    }
+
+    .drawer-title {
+      font-weight: 700;
+      color: var(--color-cta);
+      font-size: 16px;
+    }
+
+    .drawer-close-btn {
+      font-size: 20px;
+      color: var(--color-text-muted);
+      padding: 4px 8px;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-links a {
+      display: block;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      border-radius: var(--radius-sm);
+    }
+
+    .mobile-nav-links a:hover, .mobile-nav-links a.active {
+      background: var(--color-bg-tint);
+      color: var(--color-cta);
+    }
+
+    .mobile-drawer-cta {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+  }
+</style>

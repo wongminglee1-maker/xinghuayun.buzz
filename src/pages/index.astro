@@ -1,0 +1,1797 @@
+---
+import Layout from '../layouts/Layout.astro';
+import plansData from '../data/pricing.json';
+import brandData from '../data/brand.json';
+import faqsData from '../data/faqs.json';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+import AnzuPlanAdvisor from '../components/AnzuPlanAdvisor.astro';
+import TrafficCalculator from '../components/TrafficCalculator.astro';
+
+const affiliateUrl = brandData.affiliateUrl;
+const pageTitle = "杏花云机场 - Clash机场订阅、全球代理节点与客户端指南";
+const pageDesc = "了解杏花云机场XingHua Cloud的Clash订阅、VLESS协议、全球代理节点及客户端指南。提供12元年付、3元月付、1000GB专业版及365天流量包资料、套餐价格对比与购买入口。";
+
+// Build FAQPage Schema from the 36 FAQs
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqsData.map(f => ({
+    '@type': 'Question',
+    'name': f.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer
+    }
+  }))
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/"
+  jsonLd={faqJsonLd}
+  showIntro={true}
+>
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="hero-section">
+    <div class="hero-inner container">
+      <div class="hero-content">
+        <div class="hero-badge-row">
+          <span class="blossom-badge">🌸 Blossom Girl MAX · 日系治愈美学</span>
+          <span class="hero-en-tag">{brandData.heroEnglish}</span>
+        </div>
+
+        <h1 class="hero-h1">{brandData.heroH1}</h1>
+        <div class="hero-visual-title">{brandData.visualTitle}</div>
+        <p class="hero-slogan">与杏花少女一起，开启属于你的云端旅程。</p>
+        <div class="hero-subline">{brandData.heroSubtitle}</div>
+
+        <p class="hero-prose">
+          杏花云（XingHua Cloud）以高性价比全球网络连接、VLESS协议及灵活流量订阅为核心，为日常浏览、学习办公、人工智能应用及多平台设备提供多样化网络服务选择。从每年12元的经济型套餐，到每月1000GB的专业版方案，以及365天一次性流量包，用户可以根据自身预算、设备数量与使用需求选择适合自己的网络连接方案。跟随杏花少女的云端旅程，轻松了解套餐价格、节点订阅、Clash客户端兼容性及网络配置知识。
+        </p>
+
+        <!-- 4 Action Buttons -->
+        <div class="hero-actions">
+          <a href="#pricing-plans" class="btn-primary">
+            <span>查看杏花套餐</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+          </a>
+          <a href="#plan-advisor" class="btn-secondary btn-soft-green">
+            <span>🌸 智能推荐套餐</span>
+          </a>
+          <a href="/clients/" class="btn-secondary">
+            <span>Clash使用指南</span>
+          </a>
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel={brandData.affiliateRel}
+            class="btn-primary"
+            style="background: linear-gradient(135deg, #A95070 0%, #8F3D58 100%);"
+          >
+            <span>立即购买</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- 6 Hero Key Stats -->
+        <div class="hero-stats-grid">
+          <div class="hero-stat-card">
+            <span class="stat-num">¥3<small>/月起</small></span>
+            <span class="stat-label">灵活月付轻量版</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">¥12<small>/年起</small></span>
+            <span class="stat-label">入门年付（折合¥1/月）</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">1000<small>GB/月</small></span>
+            <span class="stat-label">专业版大流量资料</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">¥20<small>/次</small></span>
+            <span class="stat-label">365天1000GB流量包</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">2–5<small>台</small></span>
+            <span class="stat-label">多设备并发支持</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="stat-num">VLESS</span>
+            <span class="stat-label">轻量高效核心协议</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Character Illustration -->
+      <div class="hero-character-box">
+        <div class="hero-anzu-card">
+          <AnzuIllustration state="welcome" size={310} />
+          <div class="anzu-caption">
+            <span class="c-name">🌸 杏子 (ANZU)</span>
+            <span class="c-desc">杏花云原创品牌向导</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 01: STORY & BRAND INTRODUCTION -->
+  <section class="story-section container" id="brand-story">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">01 · 春日杏花序幕</span>
+      <h2>认识杏花云，开启轻盈的全球网络旅程</h2>
+      <p>
+        在数字网络已深度融入日常生活的今天，获取稳定、实惠且低门槛的网络连接不应成为繁琐的负担。杏花云以“轻量连接、高性价比、透明消费”为愿景，让每一位用户都能以最轻松的姿态畅游世界网络。
+      </p>
+    </div>
+
+    <div class="story-article-card blossom-card">
+      <div class="story-grid">
+        <div class="story-text">
+          <p>
+            杏花云（XingHua Cloud）诞生于对现代网络预算与使用效率的深度观察。随着远程协作、跨境学术查阅与多终端协同的普及，许多用户面临着“订阅费用昂贵、流量过剩浪费、配置极其复杂”的现实痛点。杏花云以平价轻量为基石，通过现代化 VLESS 网络协议与科学的流量分级方案，重新定义了经济型网络连接标准。
+          </p>
+          <p>
+            在品牌视觉上，我们融入了春日杏花、暖阳奶油白与草木浅绿的日系自然美学，并设计了独立品牌角色「杏子 · ANZU」。她将化身为您的网络旅程伙伴，从客户端的选择、协议的兼容性排查，到各套餐每GB理论成本测算，陪伴您理性消费，找到真正契合自身的网络连接方式。
+          </p>
+          <div class="brand-veracity-note">
+            📌 <strong>信息真实性声明：</strong> 杏花云创立时间暂未公开，本站不编造任何虚假企业发展历史与专线宣传。全站所有关于节点、协议、价格及客户端兼容性均严格基于商家公开资料整理收录，以供用户做出客观参考。
+          </div>
+        </div>
+        <div class="story-side-illo">
+          <AnzuIllustration state="brand" size={260} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 02: 6 CORE ADVANTAGES -->
+  <section class="story-section container" id="brand-advantages">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">02 · 六大核心优势</span>
+      <h2>六大核心服务优势，探索高性价比数字生活</h2>
+      <p>从超低入门月费到千GB大流量，从现代协议到多端适配，杏花云为您提供扎实均衡的网络基础服务。</p>
+    </div>
+
+    <div class="advantages-grid">
+      {brandData.advantages.map((adv) => (
+        <div class="adv-card blossom-card">
+          <div class="adv-top">
+            <span class="adv-index">{adv.id}</span>
+            <span class="blossom-badge blossom-badge-green">{adv.tag}</span>
+          </div>
+          <h3 class="adv-title">{adv.title}</h3>
+          <p class="adv-desc">{adv.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CHAPTER 03: USAGE SCENARIOS -->
+  <section class="story-section container" id="usage-scenarios">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">03 · 多元场景连接</span>
+      <h2>从AI办公到高清视频，多样化网络使用场景</h2>
+      <p>无论您是专注学术研究、日常协同办公，还是影音娱乐追剧，都能找到合适的连接节奏。</p>
+    </div>
+
+    <div class="scenarios-grid">
+      <div class="scenario-card blossom-card">
+        <div class="s-icon">🤖</div>
+        <h3>主流 AI 工具交互协同</h3>
+        <p>支持日常访问主流国际人工智能对话工具（如 ChatGPT、Claude、Perplexity 等），适合文本生成、编程辅助与学术检索。</p>
+        <span class="scenario-tip">推荐节点：美国、日本、新加坡</span>
+      </div>
+      <div class="scenario-card blossom-card">
+        <div class="s-icon">🎬</div>
+        <h3>高清流媒体视听娱乐</h3>
+        <p>提供大容量月度流量支持，满足 YouTube 1080P/4K 高清视听、Netflix 剧集及国际流行音乐串流的日常娱乐需求。</p>
+        <span class="scenario-tip">推荐套餐：标准版（500GB）或专业版（1000GB）</span>
+      </div>
+      <div class="scenario-card blossom-card">
+        <div class="s-icon">💼</div>
+        <h3>轻度远程办公与跨国协同</h3>
+        <p>支持 GitHub 代码拉取、海外文献检索、Google Docs 多人协作与跨境视频会议，多设备协同保持随时在线。</p>
+        <span class="scenario-tip">推荐节点：中国香港（超低延迟）</span>
+      </div>
+      <div class="scenario-card blossom-card">
+        <div class="s-icon">📱</div>
+        <h3>手机与电脑双端日常备用</h3>
+        <p>针对偶尔查阅资讯、备用网络应急或低频差旅的用户，提供低门槛年付与365天流量包，不浪费任何一分钱。</p>
+        <span class="scenario-tip">推荐方案：年付50G 或 365天流量包</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 04: GLOBAL BLOSSOM GARDEN -->
+  <section class="story-section container" id="global-nodes">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">04 · 全球网络花园</span>
+      <h2>杏花云全球代理节点与地区连接指南</h2>
+      <p>收录中国香港、日本、新加坡与美国四大核心区域节点资料，根据地理位置与业务特点灵活分流。</p>
+    </div>
+
+    <div class="garden-map-card blossom-card blossom-card-green">
+      <div class="garden-grid">
+        <div class="garden-nodes-list">
+          {brandData.nodes.map((n) => (
+            <div class="node-item">
+              <div class="node-item-head">
+                <span class="node-flag">🌸</span>
+                <span class="node-name">{n.name}</span>
+                <span class="node-region-tag">{n.region}</span>
+              </div>
+              <div class="node-delay">{n.delay}</div>
+              <p class="node-desc">{n.desc}</p>
+              <div class="node-fit">🎯 适用：{n.suitableFor}</div>
+            </div>
+          ))}
+        </div>
+        <div class="garden-side-info">
+          <AnzuIllustration state="nodes" size={240} />
+          <div class="garden-notice">
+            <h4>💡 节点选择建议</h4>
+            <p>
+              日常网页浏览与即时通讯优先选择<strong>中国香港</strong>；流媒体娱乐推荐<strong>日本</strong>；国际云服务与跨境接口推荐<strong>新加坡</strong>；AI 工具使用与大文件下载推荐<strong>美国</strong>。
+            </p>
+            <p class="garden-warn">
+              * 注：延迟数据为基于地理物理距离之理论范围，由于网络运营商路由与晚高峰波动，请以客户端本地实时 Ping 值为准。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 05: 6 PRICING PLANS -->
+  <section class="story-section container" id="pricing-plans">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">05 · 六款杏花套餐</span>
+      <h2>杏花云机场套餐价格与六款流量方案</h2>
+      <p>建立统一数据源，提供年付50G、年付100G、轻量版、标准版、专业版及365天流量包完整对比。</p>
+    </div>
+
+    <!-- Cycle Filter Tabs -->
+    <div class="plans-filter-bar">
+      <button type="button" class="plan-tab active" data-filter="all">全部方案 (6)</button>
+      <button type="button" class="plan-tab" data-filter="monthly">支持月付 (3)</button>
+      <button type="button" class="plan-tab" data-filter="yearly">经济年付 (5)</button>
+      <button type="button" class="plan-tab" data-filter="one-time">一次性流量包 (1)</button>
+    </div>
+
+    <div class="plans-grid">
+      {plansData.map((plan) => (
+        <div class={`plan-card blossom-card ${plan.id === 'standard' ? 'plan-card-featured' : ''}`} data-type={plan.trafficType} data-cycles={plan.availableCycles.join(',')}>
+          <div class="plan-top-badge">
+            <span class="plan-theme-name">🌸 {plan.visualTheme}</span>
+            <span class="plan-badge-pill">{plan.badge}</span>
+          </div>
+
+          <h3 class="plan-name">{plan.name}</h3>
+          <div class="plan-traffic-highlight">{plan.trafficDisplay}</div>
+
+          <!-- Dynamic Price Display -->
+          <div class="plan-price-row">
+            {plan.id === 'annual-50g' && (
+              <div class="price-box">
+                <span class="price-val">¥12</span>
+                <span class="price-unit">/ 年</span>
+                <span class="price-sub">折合 ¥1/月 · 每GB仅需 ¥0.020</span>
+              </div>
+            )}
+            {plan.id === 'annual-100g' && (
+              <div class="price-box">
+                <span class="price-val">¥24</span>
+                <span class="price-unit">/ 年</span>
+                <span class="price-sub">折合 ¥2/月 · 每GB仅需 ¥0.020</span>
+              </div>
+            )}
+            {plan.id === 'lightweight' && (
+              <div class="price-box">
+                <span class="price-val">¥3</span>
+                <span class="price-unit">/ 月起</span>
+                <span class="price-sub">季付¥9 / 半年¥18 / 年付¥36 (¥0.015/GB)</span>
+              </div>
+            )}
+            {plan.id === 'standard' && (
+              <div class="price-box">
+                <span class="price-val">¥6</span>
+                <span class="price-unit">/ 月起</span>
+                <span class="price-sub">季付¥18 / 半年¥36 / 年付¥72 (¥0.012/GB)</span>
+              </div>
+            )}
+            {plan.id === 'pro' && (
+              <div class="price-box">
+                <span class="price-val">¥10</span>
+                <span class="price-unit">/ 月起</span>
+                <span class="price-sub">年付参考区间 ¥90–120 (¥0.0075–0.0100/GB)</span>
+              </div>
+            )}
+            {plan.id === 'traffic-pack-365' && (
+              <div class="price-box">
+                <span class="price-val">¥20</span>
+                <span class="price-unit">/ 次</span>
+                <span class="price-sub">365天有效期内总计 1000GB (¥0.020/GB)</span>
+              </div>
+            )}
+          </div>
+
+          <p class="plan-desc">{plan.description}</p>
+
+          <ul class="plan-features-list">
+            {plan.features.map((feat) => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#526B53" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>{feat}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="plan-cta-box">
+            <a
+              href={affiliateUrl}
+              target="_blank"
+              rel={brandData.affiliateRel}
+              class="btn-primary plan-buy-btn"
+              data-plan-name={plan.name}
+              data-plan-price={plan.id === 'annual-50g' ? '¥12/年' : plan.id === 'annual-100g' ? '¥24/年' : plan.id === 'lightweight' ? '¥3/月' : plan.id === 'standard' ? '¥6/月' : plan.id === 'pro' ? '¥10/月' : '¥20/次'}
+              data-plan-cycle={plan.defaultCycle}
+            >
+              <span>立即选购</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CHAPTER 06: HOW TO CHOOSE PLANS -->
+  <section class="story-section container" id="how-to-choose">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">06 · 选型建议</span>
+      <h2>50GB至1000GB，杏花云套餐应该怎么选？</h2>
+      <p>按照设备数量与月度实际使用需求对号入座，避免低估断网或过度冗余。</p>
+    </div>
+
+    <div class="guide-grid">
+      <div class="guide-card blossom-card">
+        <h3>1. 极低预算与轻量体验（50G–100G）</h3>
+        <p>如果您平时仅在手机上查阅维基百科、偶尔翻译网页、查收海外邮件，每月 50GB 至 100GB 绰绰有余。年付 12 元或 24 元相当于每天花费仅需几分钱，是备用连接与轻度学习用户的极致选择。</p>
+      </div>
+      <div class="guide-card blossom-card">
+        <h3>2. 灵活测试与日常办公（轻量版 200G）</h3>
+        <p>新用户建议优先尝试月付 3 元的轻量版。每月 200GB 能够充分满足日常网页浏览、社交媒体互动与主流 AI 工具交互。按月支付没有任何沉没成本，体验满意后再考虑升级或长期订阅。</p>
+      </div>
+      <div class="guide-card blossom-card">
+        <h3>3. 绝大多数人的平衡首选（标准版 500G）</h3>
+        <p>如果您喜欢在 YouTube 观看 1080P 高清视频，或者经常参与线上视频协作，标准版（¥6/月）提供 500GB 充沛容量与 3 台设备配额，在流量规模与支出预算之间取得了绝佳的平衡。</p>
+      </div>
+      <div class="guide-card blossom-card">
+        <h3>4. 多设备重度极客（专业版 1000G）</h3>
+        <p>如果拥有 4–5 台设备（如手机、电脑、平板、NAS 或全家共享），且频繁观看 4K 超高清视频或下载大容量数据集，专业版（¥10/月）的 1000GB 月流量能够彻底告别流量告急的顾虑。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 07: 365-DAY PACK VS PERIODIC PLANS -->
+  <section class="story-section container" id="traffic-pack-section">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">07 · 一次性流量深度辨析</span>
+      <h2>365天1000GB流量包与周期套餐有什么区别？</h2>
+      <p>认清计费周期与流量消耗模式的差异，不做盲目消费者。</p>
+    </div>
+
+    <div class="pack-comparison-card blossom-card">
+      <div class="table-responsive">
+        <table class="blossom-table">
+          <thead>
+            <tr>
+              <th>对比维度</th>
+              <th>365天流量包（四季花境）</th>
+              <th>专业版周期套餐（千花盛放）</th>
+              <th>标准版周期套餐（杏花庭院）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>流量计算逻辑</strong></td>
+              <td><span class="text-cta">365天内总计 1000GB</span>（用完即止）</td>
+              <td>每月重置 1000GB（全年共计 12,000GB）</td>
+              <td>每月重置 500GB（全年共计 6,000GB）</td>
+            </tr>
+            <tr>
+              <td><strong>支付模式</strong></td>
+              <td>一次性支付 ¥20 / 次</td>
+              <td>月付 ¥10 / 年付参考区间 ¥90–120</td>
+              <td>月付 ¥6 / 年付 ¥72</td>
+            </tr>
+            <tr>
+              <td><strong>有效期限</strong></td>
+              <td>自购买起 365 天（非永久不限时）</td>
+              <td>按月/按年持续有效，每月清零重置</td>
+              <td>按月/按年持续有效，每月清零重置</td>
+            </tr>
+            <tr>
+              <td><strong>支持设备数</strong></td>
+              <td>3 台设备同时在线</td>
+              <td><span class="text-green">5 台设备同时在线</span></td>
+              <td>3 台设备同时在线</td>
+            </tr>
+            <tr>
+              <td><strong>最契合用户画像</strong></td>
+              <td>经常差旅偶尔出境、仅用于临时应急备用</td>
+              <td>家庭多设备共享、4K流媒体狂热者、大文件下载</td>
+              <td>个人日常高频主力使用、视听与办公兼具</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pack-warning-bar">
+        ⚠️ <strong>重要澄清：</strong> 365天流量包不是“每月1000GB”，也不是“永久不限时”。购买前请预估自己一年的总流量是否在 1000GB 以内，避免误购。
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 08: ANZU SMART PLAN ADVISOR -->
+  <section class="story-section container">
+    <AnzuPlanAdvisor />
+  </section>
+
+  <!-- CHAPTER 09: TRAFFIC BUDGET CALCULATOR & GB COST -->
+  <section class="story-section container">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">08 · 成本与预算分析</span>
+      <h2>杏花云每GB成本与年度网络预算分析</h2>
+      <p>理论每GB成本建立在全部可用流量被充分使用的假设上，透明解析不同周期的资金支出。</p>
+    </div>
+
+    <div class="cost-analysis-card blossom-card">
+      <div class="table-responsive">
+        <table class="blossom-table">
+          <thead>
+            <tr>
+              <th>套餐方案</th>
+              <th>计费规格</th>
+              <th>折算每月支出</th>
+              <th>理论每GB单价</th>
+              <th>周期年付节省分析</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>年付50G</strong></td>
+              <td>一次性 ¥12 / 年</td>
+              <td>¥1.00 / 月</td>
+              <td>¥0.020</td>
+              <td>经济型固定年付，折算月付仅1元</td>
+            </tr>
+            <tr>
+              <td><strong>年付100G</strong></td>
+              <td>一次性 ¥24 / 年</td>
+              <td>¥2.00 / 月</td>
+              <td>¥0.020</td>
+              <td>轻量固定年付，折算月付仅2元</td>
+            </tr>
+            <tr>
+              <td><strong>轻量版 (200G)</strong></td>
+              <td>月付 ¥3 / 年付 ¥36</td>
+              <td>¥3.00 / 月</td>
+              <td>¥0.015</td>
+              <td>各周期等比例定价，无额外年付暗扣</td>
+            </tr>
+            <tr>
+              <td><strong>标准版 (500G)</strong></td>
+              <td>月付 ¥6 / 年付 ¥72</td>
+              <td>¥6.00 / 月</td>
+              <td>¥0.012</td>
+              <td>等比例计费，月付连续12次为72元</td>
+            </tr>
+            <tr>
+              <td><strong>专业版 (1000G)</strong></td>
+              <td>月付 ¥10 / 年付 ¥90–120</td>
+              <td>¥7.50–10.00 / 月</td>
+              <td>¥0.0075–0.0100</td>
+              <td>若以年付90元核实，比月付年省30元；若120元则无差</td>
+            </tr>
+            <tr>
+              <td><strong>365天流量包</strong></td>
+              <td>一次性 ¥20 / 365天</td>
+              <td>不适用周期折月比较</td>
+              <td>¥0.020</td>
+              <td>单次支出仅20元，无连续月租损耗</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cost-note">
+        * 注：专业版年付 90–120 元为公开参考区间，用户可在收银台核实最终数字。理论每GB成本仅作为规格参数对比，若用户当月仅消耗极少流量，实际每GB成本将高于理论值。
+      </p>
+    </div>
+
+    <!-- Integrated Calculator -->
+    <TrafficCalculator />
+  </section>
+
+  <!-- CHAPTER 10: CLASH & CLIENT KNOWLEDGE -->
+  <section class="story-section container" id="client-guide">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">09 · 客户端知识体系</span>
+      <h2>Clash机场订阅与VLESS客户端兼容性指南</h2>
+      <p>深入了解内核分支演进，确保您所使用的软件能够正确解析并驱动 VLESS 协议。</p>
+    </div>
+
+    <div class="clients-overview-grid">
+      <div class="client-box blossom-card">
+        <div class="c-head">
+          <span class="c-icon">💻</span>
+          <div>
+            <h3>Windows 客户端推荐</h3>
+            <span class="c-rec">首推：Clash Verge Rev</span>
+          </div>
+        </div>
+        <p>原生搭载开源 Mihomo（Clash Meta）内核，完整支持 VLESS 协议。具备现代美观的图形界面、便捷的系统代理与 Tun 虚拟网卡模式，稳定性极高。</p>
+        <div class="c-actions">
+          <a href="/articles/clash-verge-airport-guide/" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">阅读 Verge 配置教程 →</a>
+        </div>
+      </div>
+
+      <div class="client-box blossom-card">
+        <div class="c-head">
+          <span class="c-icon">🍏</span>
+          <div>
+            <h3>macOS 客户端推荐</h3>
+            <span class="c-rec">首推：Clash Verge Rev for Mac</span>
+          </div>
+        </div>
+        <p>完美适配 Apple Silicon M系列与 Intel 芯片架构。支持订阅自动更新与智能规则分流，配合系统钥匙串实现顺畅网络体验。</p>
+        <div class="c-actions">
+          <a href="/clients/" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">查看 macOS 详细指引 →</a>
+        </div>
+      </div>
+
+      <div class="client-box blossom-card">
+        <div class="c-head">
+          <span class="c-icon">🤖</span>
+          <div>
+            <h3>Android 客户端推荐</h3>
+            <span class="c-rec">首推：Clash Meta for Android / Flclash</span>
+          </div>
+        </div>
+        <p>支持新一代传输协议与规则集。用户可在移动端灵活配置分应用代理（绕过国内银行与特定APP），节省电量与流量消耗。</p>
+        <div class="c-actions">
+          <a href="/clients/" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">移动端配置指南 →</a>
+        </div>
+      </div>
+
+      <div class="client-box blossom-card">
+        <div class="c-head">
+          <span class="c-icon">📱</span>
+          <div>
+            <h3>iOS 平台客户端推荐</h3>
+            <span class="c-rec">推荐：Shadowrocket / Sing-box</span>
+          </div>
+        </div>
+        <p>iOS 原生无开源 Clash 官方版，推荐在非国区 App Store 选用兼容 VLESS 协议的现代工具，一键扫码或订阅导入即可生效。</p>
+        <div class="c-actions">
+          <a href="/clients/" class="btn-secondary" style="font-size: 13px; padding: 6px 14px;">iOS 订阅导入步骤 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 11: CLASH VERGE & MIHOMO DEEP DIVE -->
+  <section class="story-section container" id="mihomo-knowledge">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">10 · 核心技术深度</span>
+      <h2>Clash Verge、Clash Meta及Mihomo使用知识</h2>
+      <p>厘清开源客户端、内核驱动与代理协议之间的底层逻辑关系。</p>
+    </div>
+
+    <div class="tech-deep-card blossom-card blossom-card-green">
+      <div class="tech-grid">
+        <div class="tech-body">
+          <h3>为什么原版 Clash 无法直接使用 VLESS？</h3>
+          <p>
+            开源早期的经典版 Clash 核心（Clash Premium/OpenSource）在其停更前并未将 VLESS 作为原生受支持协议。因此，如果用户使用陈旧版本的客户端，直接导入含 VLESS 节点的订阅常常会遇到“unsupported proxy type”或配置文件解析报错。
+          </p>
+          <h3>Mihomo（Clash Meta）的革新价值</h3>
+          <p>
+            开源社区后续主导了 Mihomo 内核的持续研发，全面拥抱了 VLESS、Hysteria2、TUIC 以及现代 gRPC 传输等新技术规范。同时，Mihomo 极大地增强了 DNS 防污染能力与基于规则集（Rule Provider）的分流逻辑，成为当下全球网络连接的基石。
+          </p>
+          <div class="tech-link-row">
+            <a href="/articles/clash-meta-node-guide/" class="btn-primary" style="font-size: 13.5px;">阅读 Clash Meta 深度技术解析 →</a>
+            <a href="/clients/" class="btn-secondary" style="font-size: 13.5px;">访问 Clash 客户端独立中心</a>
+          </div>
+        </div>
+        <div class="tech-illo">
+          <AnzuIllustration state="clients" size={260} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 12: 6 ORIGINAL ARTICLES HIGHLIGHT -->
+  <section class="story-section container" id="reading-center">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">11 · 原创阅读中心</span>
+      <h2>2026机场推荐与杏花云原创阅读中心</h2>
+      <p>每篇均达1500–1800字完整原创正文，深入探讨选型、购买、稳定性与多设备方案。</p>
+    </div>
+
+    <div class="articles-highlight-grid">
+      <a href="/articles/clash-airport-client-selection-2026/" class="article-card-item blossom-card">
+        <span class="a-tag">选型指南 · 13</span>
+        <h3>2026 Clash机场推荐</h3>
+        <p>按客户端版本、VLESS订阅与设备匹配深入测评，拒绝空泛参数，提供真实验证清单。</p>
+        <span class="a-more">阅读全文 (1,600+字) →</span>
+      </a>
+
+      <a href="/articles/clash-node-purchase-guide/" class="article-card-item blossom-card">
+        <span class="a-tag">购买指南 · 14</span>
+        <h3>Clash节点购买指南</h3>
+        <p>全面解析节点与订阅服务的本质区别、免费节点的安全风险及订阅密钥保护规范。</p>
+        <span class="a-more">阅读全文 (1,650+字) →</span>
+      </a>
+
+      <a href="/articles/stable-clash-subscription/" class="article-card-item blossom-card">
+        <span class="a-tag">稳定性测评 · 15</span>
+        <h3>稳定Clash订阅推荐2026</h3>
+        <p>系统剖析延迟、丢包率、抖动与晚高峰拥堵的成因，提供科学的节点自测排查流程。</p>
+        <span class="a-more">阅读全文 (1,700+字) →</span>
+      </a>
+
+      <a href="/articles/clash-verge-airport-guide/" class="article-card-item blossom-card">
+        <span class="a-tag">客户端实战 · 16</span>
+        <h3>Clash Verge机场推荐</h3>
+        <p>聚焦 Clash Verge Rev 客户端与 Mihomo 内核实战应用，详解 Windows 与 Mac 配置技巧。</p>
+        <span class="a-more">阅读全文 (1,600+字) →</span>
+      </a>
+
+      <a href="/articles/clash-meta-node-guide/" class="article-card-item blossom-card">
+        <span class="a-tag">内核进阶 · 17</span>
+        <h3>Clash Meta节点推荐</h3>
+        <p>深度探讨 Mihomo 内核工作机制、VLESS 数据流传输配置与多地区节点路由分流。</p>
+        <span class="a-more">阅读全文 (1,680+字) →</span>
+      </a>
+
+      <a href="/articles/unlimited-device-airport-guide/" class="article-card-item blossom-card">
+        <span class="a-tag">设备真相 · 18</span>
+        <h3>不限设备机场推荐指南</h3>
+        <p>深度揭露“不限设备”背后的隐形限制，客观分析杏花云 2台/3台/5台 套餐的设备选型技巧。</p>
+        <span class="a-more">阅读全文 (1,650+字) →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CHAPTER 13: COUPONS & PURCHASE CONVERSION -->
+  <section class="story-section container" id="coupons-purchase">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">12 · 优惠与购买指南</span>
+      <h2>杏花云优惠信息与订阅购买入口</h2>
+      <p>坚持真实可信原则，坚决不编造虚假大额优惠券，以实际公开价格为准。</p>
+    </div>
+
+    <div class="coupon-box blossom-card">
+      <div class="coupon-inner">
+        <div class="coupon-status">
+          <span class="c-badge">当前优惠状态</span>
+          <h3>暂无已核实公开促销优惠码</h3>
+          <p>
+            杏花云官方目前暂未对外发布经过核实有效的通用折扣优惠码。鉴于其基础套餐已实行平价定价策略（如轻量版月付仅需 ¥3、年付50G方案年付仅需 ¥12），日常价格本身已具备极高性价比。
+          </p>
+          <p class="coupon-safe-tip">
+            🛡️ <strong>安全警示：</strong> 切勿轻信部分第三方网络渠道声称的“5折限时神券”等误导性信息，任何正规优惠或节假日调整均以官方收银台实时扣减为准。
+          </p>
+        </div>
+        <div class="coupon-action-col">
+          <div class="c-card-visual">
+            <span class="c-v-tag">官方直连通道</span>
+            <div class="c-v-price">¥3<small>/月起</small></div>
+            <span class="c-v-desc">支持微信 · 支付宝 · USDT 等</span>
+          </div>
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel={brandData.affiliateRel}
+            class="btn-primary"
+            style="width: 100%; text-align: center;"
+          >
+            立即前往官方购买入口 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 14: BLOSSOM GUESTBOOK (AUTHENTICITY DISCLOSURE) -->
+  <section class="story-section container" id="guestbook-section">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">13 · 用户声音</span>
+      <h2>杏花云用户评价与真实使用反馈</h2>
+      <p>Blossom Guestbook · 坚持真实可核实原则，不制造虚假五星评价与虚假交易截图。</p>
+    </div>
+
+    <div class="guestbook-card blossom-card">
+      <div class="guestbook-grid">
+        <div class="gb-text">
+          <div class="gb-alert">
+            <span class="gb-tag">📢 信息披露</span>
+            <h3>暂无已核实第三方公开用户评价数据</h3>
+          </div>
+          <p>
+            根据本站严格的内容审核准则，我们只展示来源明确、授权充分且经过技术交叉核实的真实用户反馈。目前，市场上关于杏花云的第三方独立评测仍处于持续收录阶段，本站严格禁止编造虚假用户昵称、虚假五星好评或伪造购买记录。
+          </p>
+          <p>
+            我们建议每一位意向用户在选购前，优先选择支持月付的套餐（如轻量版 ¥3/月）进行低成本实际体验，结合自身的网络运营商（电信、联通、移动）与常驻设备进行自主验证。
+          </p>
+        </div>
+        <div class="gb-illo">
+          <AnzuIllustration state="welcome" size={200} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 15: 36 COMPREHENSIVE FAQS -->
+  <section class="story-section container" id="faq-section">
+    <div class="section-header">
+      <span class="blossom-badge sub-tag">14 · 常见问题解答</span>
+      <h2>杏花云机场常见问题FAQ</h2>
+      <p>精选36项真实、完整且具有实际价值的问答，解答您关于品牌、价格、VLESS、客户端与多设备的全部疑惑。</p>
+    </div>
+
+    <!-- FAQ Search / Filter Input -->
+    <div class="faq-search-box">
+      <input type="text" id="faq-search-input" placeholder="🔍 输入关键词搜索问题（如：3元、年付、VLESS、Clash、设备数...）" aria-label="搜索FAQ问题" />
+    </div>
+
+    <div class="faqs-list" id="faqs-list-container">
+      {faqsData.map((faq) => (
+        <details class="faq-item blossom-card" id={`faq-${faq.id}`} data-category={faq.category}>
+          <summary class="faq-question">
+            <span class="faq-q-num">Q{faq.id}.</span>
+            <span class="faq-q-text">{faq.question}</span>
+            <span class="faq-arrow">▼</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  (function() {
+    // 1. Plan Tab Filtering
+    const tabs = document.querySelectorAll('.plan-tab');
+    const cards = document.querySelectorAll('.plan-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else if (filter === 'monthly') {
+            const cycles = card.getAttribute('data-cycles') || '';
+            card.style.display = cycles.includes('monthly') ? 'flex' : 'none';
+          } else if (filter === 'yearly') {
+            const cycles = card.getAttribute('data-cycles') || '';
+            card.style.display = cycles.includes('yearly') ? 'flex' : 'none';
+          } else if (filter === 'one-time') {
+            const type = card.getAttribute('data-type');
+            card.style.display = type === 'one-time' ? 'flex' : 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Select plan dispatch for sticky purchase bar
+    const buyButtons = document.querySelectorAll('.plan-buy-btn');
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-plan-name');
+        const price = btn.getAttribute('data-plan-price');
+        const cycle = btn.getAttribute('data-plan-cycle');
+        window.dispatchEvent(new CustomEvent('select-plan', {
+          detail: { name, price, cycle }
+        }));
+      });
+    });
+
+    // 3. FAQ Live Filter
+    const searchInput = document.getElementById('faq-search-input');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        faqItems.forEach(item => {
+          const qText = item.querySelector('.faq-q-text')?.textContent.toLowerCase() || '';
+          const aText = item.querySelector('.faq-answer')?.textContent.toLowerCase() || '';
+          if (!query || qText.includes(query) || aText.includes(query)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+  })();
+</script>
+
+<style>
+  /* HERO SECTION STYLES */
+  .hero-section {
+    padding: 48px 0 64px;
+    position: relative;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-en-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.2em;
+  }
+
+  .hero-h1 {
+    font-size: clamp(26px, 3.8vw, 42px);
+    color: var(--color-cta);
+    margin-bottom: 8px;
+    font-family: var(--font-serif);
+    line-height: 1.25;
+  }
+
+  .hero-visual-title {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 800;
+    color: var(--color-petal-rose);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .hero-slogan {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+    margin-bottom: 8px;
+  }
+
+  .hero-subline {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+
+  .hero-prose {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--color-text-main);
+    margin-bottom: 28px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .hero-stat-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--color-cta);
+    line-height: 1.2;
+  }
+
+  .stat-num small {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+    margin-left: 2px;
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+  }
+
+  .hero-character-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-anzu-card {
+    background: linear-gradient(135deg, rgba(255, 249, 240, 0.9) 0%, rgba(248, 225, 233, 0.9) 100%);
+    border: 2px solid var(--color-sakura-pink);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    box-shadow: 0 16px 36px -4px rgba(169, 80, 112, 0.16);
+    text-align: center;
+    position: relative;
+  }
+
+  .anzu-caption {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .c-desc {
+    font-size: 11.5px;
+    color: var(--color-forest-green);
+  }
+
+  /* STORY SECTIONS */
+  .story-section {
+    padding: 56px 0;
+  }
+
+  .story-article-card {
+    padding: 36px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .story-text p {
+    font-size: 15.5px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+    color: var(--color-text-main);
+  }
+
+  .brand-veracity-note {
+    background: #FFF9F0;
+    border-left: 4px solid var(--color-cta);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--color-forest-green);
+    margin-top: 20px;
+  }
+
+  .story-side-illo {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ADVANTAGES GRID */
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .adv-card {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .adv-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .adv-index {
+    font-size: 26px;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    color: var(--color-sakura-pink);
+  }
+
+  .adv-title {
+    font-size: 18px;
+    color: var(--color-cta);
+    margin-bottom: 10px;
+  }
+
+  .adv-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+  }
+
+  /* SCENARIOS */
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .scenario-card {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .s-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .scenario-card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--color-text-main);
+  }
+
+  .scenario-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    flex: 1;
+    margin-bottom: 12px;
+  }
+
+  .scenario-tip {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-cta);
+    background: var(--color-bg-tint);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* GLOBAL NODES */
+  .garden-map-card {
+    padding: 36px 32px;
+  }
+
+  .garden-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .garden-nodes-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .node-item {
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .node-item-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .node-flag { font-size: 18px; }
+
+  .node-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-main);
+  }
+
+  .node-region-tag {
+    font-size: 10.5px;
+    background: var(--color-green-card);
+    color: var(--color-forest-green);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .node-delay {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+    margin-bottom: 6px;
+  }
+
+  .node-desc {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .node-fit {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+  }
+
+  .garden-side-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .garden-notice {
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    padding: 18px;
+    border: 1px solid var(--color-border-green);
+    margin-top: 14px;
+    text-align: left;
+  }
+
+  .garden-notice h4 {
+    font-size: 14px;
+    color: var(--color-forest-green);
+    margin-bottom: 8px;
+  }
+
+  .garden-notice p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+  }
+
+  .garden-warn {
+    font-size: 11px !important;
+    color: var(--color-text-muted);
+  }
+
+  /* PLANS SECTION */
+  .plans-filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .plan-tab {
+    padding: 8px 20px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border-subtle);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+  }
+
+  .plan-tab:hover, .plan-tab.active {
+    background: var(--color-cta);
+    border-color: var(--color-cta);
+    color: #FFFFFF;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .plan-card {
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .plan-card-featured {
+    border: 2px solid var(--color-petal-rose);
+    box-shadow: 0 12px 36px rgba(169, 80, 112, 0.16);
+  }
+
+  .plan-top-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .plan-theme-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+  }
+
+  .plan-badge-pill {
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+
+  .plan-name {
+    font-size: 22px;
+    color: var(--color-text-main);
+    margin-bottom: 4px;
+  }
+
+  .plan-traffic-highlight {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-cta);
+    margin-bottom: 16px;
+  }
+
+  .plan-price-row {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--color-border-subtle);
+  }
+
+  .price-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-val {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-cta);
+    line-height: 1;
+  }
+
+  .price-unit {
+    font-size: 13px;
+    color: var(--color-forest-green);
+    font-weight: 600;
+    margin-left: 2px;
+  }
+
+  .price-sub {
+    font-size: 11.5px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+  }
+
+  .plan-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 18px;
+  }
+
+  .plan-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .plan-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-text-main);
+    line-height: 1.45;
+  }
+
+  .plan-cta-box {
+    margin-top: auto;
+  }
+
+  .plan-buy-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* GUIDE GRID */
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .guide-card {
+    padding: 28px 24px;
+  }
+
+  .guide-card h3 {
+    font-size: 18px;
+    color: var(--color-cta);
+    margin-bottom: 12px;
+  }
+
+  .guide-card p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  /* PACK COMPARISON */
+  .pack-comparison-card {
+    padding: 32px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .blossom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .blossom-table th, .blossom-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .blossom-table th {
+    background: #FFF4F7;
+    color: var(--color-cta);
+    font-weight: 700;
+  }
+
+  .text-cta { color: var(--color-cta); font-weight: 700; }
+  .text-green { color: var(--color-forest-green); font-weight: 700; }
+
+  .pack-warning-bar {
+    background: #FFF3CD;
+    border: 1px solid #FFEEBA;
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+  }
+
+  /* COST ANALYSIS */
+  .cost-analysis-card {
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+
+  .cost-note {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* CLIENTS OVERVIEW */
+  .clients-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .client-box {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .c-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .c-icon { font-size: 32px; }
+
+  .c-head h3 {
+    font-size: 18px;
+    color: var(--color-text-main);
+  }
+
+  .c-rec {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .client-box p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  /* TECH DEEP */
+  .tech-deep-card {
+    padding: 36px 32px;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .tech-body h3 {
+    font-size: 18px;
+    color: var(--color-forest-green);
+    margin-bottom: 8px;
+  }
+
+  .tech-body p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin-bottom: 18px;
+  }
+
+  .tech-link-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .tech-illo {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ARTICLES HIGHLIGHT */
+  .articles-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .article-card-item {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+  }
+
+  .a-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-cta);
+    background: var(--color-bg-tint);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .article-card-item h3 {
+    font-size: 17px;
+    color: var(--color-text-main);
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+  }
+
+  .article-card-item:hover h3 {
+    color: var(--color-cta);
+  }
+
+  .article-card-item p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+
+  .a-more {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  /* COUPONS SECTION */
+  .coupon-box {
+    padding: 36px;
+    background: linear-gradient(135deg, #FFFDF9 0%, #FFF4F7 100%);
+  }
+
+  .coupon-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .c-badge {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+    background: var(--color-bg-tint);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .coupon-status h3 {
+    font-size: 22px;
+    color: var(--color-text-main);
+    margin-bottom: 12px;
+  }
+
+  .coupon-status p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin-bottom: 14px;
+  }
+
+  .coupon-safe-tip {
+    font-size: 12.5px !important;
+    color: var(--color-forest-green) !important;
+    background: #E3EEDF;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  .coupon-action-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .c-card-visual {
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-sakura-pink);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(169, 80, 112, 0.08);
+  }
+
+  .c-v-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+  }
+
+  .c-v-price {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-cta);
+    margin: 4px 0;
+  }
+
+  .c-v-desc {
+    font-size: 11.5px;
+    color: var(--color-text-muted);
+  }
+
+  /* GUESTBOOK */
+  .guestbook-card {
+    padding: 36px 32px;
+  }
+
+  .guestbook-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .gb-alert {
+    margin-bottom: 12px;
+  }
+
+  .gb-tag {
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--color-green-card);
+    color: var(--color-forest-green);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+  }
+
+  .gb-alert h3 {
+    font-size: 20px;
+    color: var(--color-text-main);
+    margin-top: 6px;
+  }
+
+  .gb-text p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+  }
+
+  .gb-illo {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* FAQS LIST */
+  .faq-search-box {
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+
+  .faq-search-box input {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--color-border-subtle);
+    background: #FFFFFF;
+    font-size: 14.5px;
+    font-family: inherit;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(73, 60, 64, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .faq-search-box input:focus {
+    border-color: var(--color-cta);
+    box-shadow: 0 6px 18px rgba(169, 80, 112, 0.12);
+  }
+
+  .faqs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+    transition: all 0.2s ease;
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-petal-rose);
+    box-shadow: 0 6px 20px rgba(169, 80, 112, 0.08);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--color-cta);
+    flex-shrink: 0;
+  }
+
+  .faq-q-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    flex: 1;
+  }
+
+  .faq-arrow {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-arrow {
+    transform: rotate(180deg);
+    color: var(--color-cta);
+  }
+
+  .faq-answer {
+    padding: 0 20px 18px 44px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 1080px) {
+    .advantages-grid, .plans-grid, .articles-highlight-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .scenarios-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 840px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-badge-row, .hero-actions {
+      justify-content: center;
+    }
+    .hero-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .story-grid, .garden-grid, .tech-grid, .coupon-inner, .guestbook-grid {
+      grid-template-columns: 1fr;
+    }
+    .garden-nodes-list {
+      grid-template-columns: 1fr;
+    }
+    .guide-grid, .clients-overview-grid {
+      grid-template-columns: 1fr;
+    }
+    .story-side-illo, .tech-illo, .gb-illo {
+      display: none;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .advantages-grid, .plans-grid, .articles-highlight-grid, .scenarios-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .faq-answer {
+      padding-left: 20px;
+    }
+  }
+</style>

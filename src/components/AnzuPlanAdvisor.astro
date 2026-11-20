@@ -1,0 +1,494 @@
+---
+import plansData from '../data/pricing.json';
+import AnzuIllustration from './AnzuIllustration.astro';
+
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+---
+
+<div class="advisor-container blossom-card" id="plan-advisor">
+  <div class="advisor-inner">
+    <div class="advisor-header">
+      <div class="advisor-title-row">
+        <span class="blossom-badge">🌸 智能匹配算法</span>
+        <h3>ANZU Smart Plan Advisor · 杏子智能套餐助手</h3>
+      </div>
+      <p class="advisor-sub">
+        输入您的实际设备数量、月度流量与预算，杏子将根据真实约束条件为您匹配最适宜的方案，杜绝盲目浪费。
+      </p>
+    </div>
+
+    <div class="advisor-content-grid">
+      <!-- Form Controls -->
+      <form id="advisor-form" class="advisor-form">
+        <div class="form-row">
+          <label for="adv-devices" class="form-label">
+            <strong>1. 同时连接设备数量</strong>
+            <span class="label-hint">手机、平板、电脑等并发在线数</span>
+          </label>
+          <select id="adv-devices" class="form-select">
+            <option value="1">1 台设备（个人单机使用）</option>
+            <option value="2" selected>2 台设备（手机 + 电脑常用）</option>
+            <option value="3">3 台设备（手机 + 平板 + 电脑）</option>
+            <option value="4">4 台设备（多端重度协同）</option>
+            <option value="5">5 台设备（家庭/多设备共用）</option>
+            <option value="6">超过 5 台设备（多人员共享）</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="adv-traffic" class="form-label">
+            <strong>2. 每月预计流量需求</strong>
+            <span class="label-hint">根据视频或浏览频率估算</span>
+          </label>
+          <select id="adv-traffic" class="form-select">
+            <option value="50">50GB / 月（极轻度浏览与查阅）</option>
+            <option value="100">100GB / 月（轻度多端网页社交）</option>
+            <option value="200" selected>200GB / 月（日常办公与日常影音）</option>
+            <option value="500">500GB / 月（高清追剧与中频下载）</option>
+            <option value="1000">1000GB / 月（千GB大流量极客）</option>
+            <option value="1500">超过 1000GB / 月（超大流量需求）</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="adv-cycle" class="form-label">
+            <strong>3. 期望支付周期</strong>
+            <span class="label-hint">灵活月付或省心长周期</span>
+          </label>
+          <select id="adv-cycle" class="form-select">
+            <option value="any" selected>不限周期（寻求最佳性价比）</option>
+            <option value="monthly">仅考虑月付（按月灵活续费）</option>
+            <option value="yearly">倾向年付（低折算月成本）</option>
+            <option value="one-time">只需要一次性流量包（低频备用）</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="adv-budget" class="form-label">
+            <strong>4. 单次最高支付预算上限</strong>
+            <span class="label-hint">当前钱包愿意单次支出的金额</span>
+          </label>
+          <div class="budget-slider-wrap">
+            <input type="range" id="adv-budget" min="5" max="150" step="5" value="50" class="budget-slider" />
+            <div class="slider-val-box">
+              <span id="budget-val-display">¥50</span>
+              <span class="budget-desc">以内</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row checkbox-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="adv-occasional" />
+            <span>我属于出差偶尔备用，不想每月背负到期清零压力</span>
+          </label>
+        </div>
+      </form>
+
+      <!-- Advisor Result Card -->
+      <div class="advisor-result-card" id="advisor-result-box">
+        <div class="result-anzu-face">
+          <AnzuIllustration state="plans" size={90} />
+          <div class="result-bubble">
+            <span class="bubble-title">🌸 杏子的推荐结论</span>
+            <p id="advisor-speech">分析中...</p>
+          </div>
+        </div>
+
+        <div class="result-plan-display" id="result-plan-display">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="result-action-row">
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel="sponsored nofollow noopener noreferrer"
+            class="btn-primary"
+            id="advisor-buy-btn"
+          >
+            前往收银台选购该方案
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ plansData, affiliateUrl }}>
+  (function() {
+    const devicesSelect = document.getElementById('adv-devices');
+    const trafficSelect = document.getElementById('adv-traffic');
+    const cycleSelect = document.getElementById('adv-cycle');
+    const budgetInput = document.getElementById('adv-budget');
+    const budgetDisplay = document.getElementById('budget-val-display');
+    const occasionalCheck = document.getElementById('adv-occasional');
+    const speechEl = document.getElementById('advisor-speech');
+    const displayEl = document.getElementById('result-plan-display');
+    const buyBtn = document.getElementById('advisor-buy-btn');
+
+    if (!devicesSelect || !budgetInput) return;
+
+    budgetInput.addEventListener('input', (e) => {
+      budgetDisplay.textContent = `¥${e.target.value}`;
+      calculateRecommendation();
+    });
+
+    [devicesSelect, trafficSelect, cycleSelect, occasionalCheck].forEach(el => {
+      el.addEventListener('change', calculateRecommendation);
+    });
+
+    function calculateRecommendation() {
+      const devices = parseInt(devicesSelect.value, 10);
+      const traffic = parseInt(trafficSelect.value, 10);
+      const cycle = cycleSelect.value;
+      const budget = parseInt(budgetInput.value, 10);
+      const isOccasional = occasionalCheck.checked;
+
+      // 1. Device limit exceeded check
+      if (devices > 5) {
+        speechEl.textContent = "很抱歉呢！杏花云全系套餐最高支持5台设备同时在线，暂无满足超过5台并发的已知套餐哦。";
+        displayEl.innerHTML = `
+          <div class="result-alert-box alert-warning">
+            <h4>⚠️ 暂无符合条件的已知套餐</h4>
+            <p>杏花云全系套餐设备上限为 5 台（专业版），不支持不限设备连接。若您有超过 5 台设备同时使用的需求，建议分开购买多个账号或评估其他专业团队服务。</p>
+          </div>
+        `;
+        return;
+      }
+
+      // 2. Traffic limit exceeded check
+      if (traffic > 1000) {
+        speechEl.textContent = "杏花云公开资料中最高规格为每月1000GB专业版，暂无更大额度的周期套餐呢。";
+        displayEl.innerHTML = `
+          <div class="result-alert-box alert-warning">
+            <h4>⚠️ 需求超过最大月流量</h4>
+            <p>当前杏花云最高月流量套餐为「专业版」（1000GB/月）。若月消耗超过 1000GB，建议理性规划流量或结合365天流量包补充。</p>
+          </div>
+        `;
+        return;
+      }
+
+      // 3. Occasional pack check
+      if (isOccasional || cycle === 'one-time') {
+        if (devices <= 3 && budget >= 20) {
+          speechEl.textContent = "由于您是低频或备用使用，推荐365天1000GB流量包！总流量长期有效，不用担心每月清零浪费。";
+          displayEl.innerHTML = `
+            <div class="matched-plan-box">
+              <div class="matched-badge">🌸 推荐方案：365天流量包</div>
+              <h3>365天流量包 · 四季花境</h3>
+              <div class="matched-price">¥20 / 次（365天内总计 1000GB）</div>
+              <ul class="matched-meta">
+                <li>✨ 支持最多 3 台设备协同使用</li>
+                <li>✨ 1000GB 总配额（非每月重置），单次支付无周期续费负担</li>
+                <li>✨ 理论每GB成本仅需 ¥0.020</li>
+              </ul>
+            </div>
+          `;
+          return;
+        } else if (budget < 20) {
+          speechEl.textContent = "365天流量包单次支付需要20元，目前您的单次预算偏低哦。";
+          displayEl.innerHTML = `
+            <div class="result-alert-box alert-info">
+              <p>365天流量包单次价格为 ¥20。若单次预算有限，可以考虑月付 ¥3 的轻量版按月测试。</p>
+            </div>
+          `;
+          return;
+        }
+      }
+
+      // 4. Candidate matching based on device & traffic
+      let matchedPlan = null;
+      let note = "";
+
+      if (devices <= 2 && traffic <= 50 && budget >= 12 && cycle !== 'monthly') {
+        matchedPlan = plansData.find(p => p.id === 'annual-50g');
+        note = "年付12元折算每月仅1元，极适合您的轻量设备与预算！";
+      } else if (devices <= 3 && traffic <= 100 && budget >= 24 && cycle !== 'monthly') {
+        matchedPlan = plansData.find(p => p.id === 'annual-100g');
+        note = "年付24元支持3台设备，折合每月仅2元，轻松覆盖多设备。";
+      } else if (devices <= 2 && traffic <= 200 && budget >= 3) {
+        matchedPlan = plansData.find(p => p.id === 'lightweight');
+        note = "轻量版月付仅需3元提供200GB，灵活且低负担！";
+      } else if (devices <= 3 && traffic <= 500 && budget >= 6) {
+        matchedPlan = plansData.find(p => p.id === 'standard');
+        note = "标准版拥有500GB月流量与3台设备配额，是综合性能平衡的首选！";
+      } else if (traffic <= 1000 || devices > 3) {
+        matchedPlan = plansData.find(p => p.id === 'pro');
+        if (cycle === 'yearly') {
+          if (budget < 90) {
+            note = "专业版年付参考区间为 ¥90–120，您的预算低于90元，建议按月付 ¥10 进行订阅。";
+          } else if (budget >= 90 && budget < 120) {
+            note = "专业版年付参考区间为 ¥90–120，您的预算处于可能符合区间，购买前需确认收银台实际售价。";
+          } else {
+            note = "专业版支持5台设备与1000GB超大月流量，满足年付参考预算！";
+          }
+        } else {
+          note = "专业版月付仅需 ¥10，支持 5 台设备与 1000GB 月流量，旗舰配置！";
+        }
+      }
+
+      if (matchedPlan) {
+        speechEl.textContent = note;
+        const priceDisplay = matchedPlan.id === 'annual-50g' ? '¥12 / 年（折合 ¥1/月）' :
+                             matchedPlan.id === 'annual-100g' ? '¥24 / 年（折合 ¥2/月）' :
+                             matchedPlan.id === 'lightweight' ? '月付 ¥3 起（200GB/月）' :
+                             matchedPlan.id === 'standard' ? '月付 ¥6 起（500GB/月）' :
+                             '月付 ¥10 / 年付参考区间 ¥90–120';
+
+        displayEl.innerHTML = `
+          <div class="matched-plan-box">
+            <div class="matched-badge">🌸 杏子推荐：${matchedPlan.name}（${matchedPlan.visualTheme}）</div>
+            <h3>${matchedPlan.name} · ${matchedPlan.trafficDisplay}</h3>
+            <div class="matched-price">${priceDisplay}</div>
+            <ul class="matched-meta">
+              <li>✨ 最大设备支持：${matchedPlan.devices} 台设备同时在线</li>
+              <li>✨ 理论每GB成本：低至 ¥${matchedPlan.costPerGb}</li>
+              <li>✨ 适用场景：${matchedPlan.scenario}</li>
+            </ul>
+          </div>
+        `;
+      } else {
+        speechEl.textContent = "当前预算或设备组合较为特殊，建议参考标准版或按月测试。";
+        displayEl.innerHTML = `
+          <div class="result-alert-box alert-info">
+            <p>建议以「轻量版」（¥3/月）或「标准版」（¥6/月）作为试用切入点。</p>
+          </div>
+        `;
+      }
+    }
+
+    calculateRecommendation();
+  })();
+</script>
+
+<style>
+  .advisor-container {
+    padding: 36px 32px;
+    margin: 40px auto;
+  }
+
+  .advisor-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .advisor-title-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .advisor-title-row h3 {
+    font-size: 24px;
+    color: var(--color-cta);
+  }
+
+  .advisor-sub {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .advisor-content-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .advisor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: #FFFDF9;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label strong {
+    font-size: 14px;
+    color: var(--color-text-main);
+  }
+
+  .label-hint {
+    font-size: 11.5px;
+    color: var(--color-text-muted);
+  }
+
+  .form-select {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border-subtle);
+    background: #FFFFFF;
+    color: var(--color-text-main);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-select:focus {
+    border-color: var(--color-cta);
+  }
+
+  .budget-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .budget-slider {
+    flex: 1;
+    accent-color: var(--color-cta);
+  }
+
+  .slider-val-box {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .budget-desc {
+    font-size: 11px;
+    color: var(--color-text-muted);
+  }
+
+  .checkbox-row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-forest-green);
+    cursor: pointer;
+  }
+
+  /* Result Card */
+  .advisor-result-card {
+    background: linear-gradient(135deg, #FFF9F0 0%, #F8E1E9 100%);
+    border: 1.5px solid var(--color-sakura-pink);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(169, 80, 112, 0.08);
+  }
+
+  .result-anzu-face {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .result-bubble {
+    background: #FFFFFF;
+    border: 1px solid var(--color-sakura-pink);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    flex: 1;
+  }
+
+  .bubble-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-cta);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .result-bubble p {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  .matched-plan-box {
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    border: 1px solid var(--color-border-subtle);
+    margin-bottom: 20px;
+  }
+
+  .matched-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    margin-bottom: 6px;
+  }
+
+  .matched-plan-box h3 {
+    font-size: 20px;
+    color: var(--color-text-main);
+    margin-bottom: 6px;
+  }
+
+  .matched-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-cta);
+    margin-bottom: 12px;
+  }
+
+  .matched-meta {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .result-alert-box {
+    padding: 16px;
+    border-radius: var(--radius-md);
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .alert-warning {
+    background: #FFF3CD;
+    color: #856404;
+    border: 1px solid #FFEEBA;
+  }
+
+  .alert-info {
+    background: #E8F4F8;
+    color: #1A5276;
+    border: 1px solid #D4E6F1;
+  }
+
+  .result-action-row {
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .advisor-content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+
+const pageTitle = "关于杏花云 XingHua Cloud｜品牌理念、客户端服务与数字网络生活";
+const pageDesc = "关于杏花云（XingHua Cloud）的品牌愿景、日系杏花少女美学、VLESS协议技术架构、多平台客户端支持、周期与一次性流量方案及预算管理全景解析。";
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  'name': pageTitle,
+  'description': pageDesc,
+  'url': 'https://xinghuayun.buzz/about/',
+  'breadcrumb': {
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '首页',
+        'item': 'https://xinghuayun.buzz/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': '关于杏花云',
+        'item': 'https://xinghuayun.buzz/about/'
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/about/"
+  jsonLd={aboutJsonLd}
+>
+  <div class="about-page-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav container" aria-label="面包屑导航">
+      <ol class="breadcrumb-list">
+        <li><a href="/">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">关于杏花云</li>
+      </ol>
+    </nav>
+
+    <!-- Page Header Banner -->
+    <header class="about-hero container">
+      <div class="about-hero-badge">
+        <span class="blossom-badge">🌸 品牌与服务白皮书</span>
+        <span class="about-hero-sub">XINGHUA CLOUD MANIFESTO</span>
+      </div>
+      <h1 class="about-h1">关于杏花云：让每一位用户轻松认识全球网络连接</h1>
+      <p class="about-lead">
+        以纯粹的性价比为底色，以日系治愈的春日杏花为视觉语言，让全球网络连接褪去晦涩生硬的技术门槛，真正成为人人可触及的数字生活伴侣。
+      </p>
+      <div class="about-meta-row">
+        <span>📅 内容审核更新：2026年11月</span>
+        <span>✍️ 撰写：杏花云技术与内容编辑部</span>
+        <span>📖 阅读时长：约 8 分钟（1,750+字）</span>
+      </div>
+    </header>
+
+    <!-- Main Content & Sidebar -->
+    <div class="about-content-wrap container">
+      <div class="about-grid">
+        <!-- Table of Contents Sidebar -->
+        <aside class="toc-sidebar">
+          <div class="toc-card blossom-card">
+            <h3 class="toc-title">🌸 目录导航</h3>
+            <ul class="toc-list">
+              <li><a href="#section-1">1. 杏花云品牌简介与定位</a></li>
+              <li><a href="#section-2">2. 杏花少女 ANZU 视觉理念</a></li>
+              <li><a href="#section-3">3. 经济型网络服务的核心价值</a></li>
+              <li><a href="#section-4">4. VLESS 现代协议架构</a></li>
+              <li><a href="#section-5">5. 全球多地区节点布局</a></li>
+              <li><a href="#section-6">6. 手机与电脑客户端适配</a></li>
+              <li><a href="#section-7">7. 50GB至1000GB周期套餐阶梯</a></li>
+              <li><a href="#section-8">8. 专业版五台设备并发需求</a></li>
+              <li><a href="#section-9">9. 365天1000GB一次性流量解析</a></li>
+              <li><a href="#section-10">10. 网络预算与流量真实利用率</a></li>
+              <li><a href="#section-11">11. AI时代下的全球数字连接</a></li>
+              <li><a href="#section-12">12. 品牌服务理念与真实性声明</a></li>
+            </ul>
+            <div class="toc-cta-box">
+              <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="btn-primary" style="width: 100%; text-align: center; font-size: 13px;">
+                选购杏花套餐
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Prose Article -->
+        <article class="about-article-body blossom-card">
+          <section id="section-1" class="article-section">
+            <h2>一、杏花云品牌简介与市场定位</h2>
+            <p>
+              杏花云（XingHua Cloud，项目代号 XingHuaCloud-C03）是一家立足于现代互联网接入需求的高性价比网络代理服务导购与技术方案品牌。在当今全球化信息交融的浪潮中，我们发现网络接入市场呈现出显著的两极分化：一面是价格居高不下、动辄年费数百元的高端专线；另一面则是充斥着不稳定隐患、配置繁琐不堪的劣质连接。
+            </p>
+            <p>
+              杏花云的核心定位正是瞄准了广大注重支出预算、追求使用效率的个人与多设备用户群体。我们坚持以“平价机场、经济型大流量、透明消费”为生命线，通过提供从年付 12 元入门方案到每月 1000GB 旗舰配置的精细化梯度，致力于降低全球网络探索的经济门槛与认知成本，让每一位需要查阅海外学术文献、进行远程开发协同或享受跨国流媒体视听的用户，都能轻松拥有稳定可靠的连接后盾。
+            </p>
+          </section>
+
+          <section id="section-2" class="article-section">
+            <h2>二、杏花少女 ANZU 视觉设计理念</h2>
+            <div class="article-illo-row">
+              <div class="article-illo-text">
+                <p>
+                  传统的代理服务或技术网站往往充斥着黑色极客界面、冰冷的终端命令行以及复杂的拓扑图，给普通用户造成了强烈的技术壁垒与心理距离感。为了打破这种刻板印象，杏花云第三站（xinghuayun.buzz）独创了以“Blossom Girl MAX · 杏花少女”为核心的日系自然治愈视觉框架。
+                </p>
+                <p>
+                  全站采用柔和的杏花粉（#F4BFD0）、温润的奶油白（#FFF9F0）与充满生机的草木浅绿（#C6DFC1）作为主色调，宛如春日盛放的杏树庭院。同时，我们推出了原创品牌陪伴向导「杏子 · ANZU」——一位温柔自然、佩戴杏花发饰、身着融合轻科技纹样改良服饰的成年女性角色。杏子以八种生动姿态穿插于网站的各个交互节点，负责套餐介绍、客户端安装引导与预算测算，让枯燥的技术探索转变为一段充满温度与互动感的故事旅程。
+                </p>
+              </div>
+              <div class="article-illo-box">
+                <AnzuIllustration state="welcome" size={180} />
+              </div>
+            </div>
+          </section>
+
+          <section id="section-3" class="article-section">
+            <h2>三、经济型网络服务的核心价值</h2>
+            <p>
+              所谓“经济型”，绝不意味着低质与敷衍。在杏花云看来，经济型网络服务的本质是对资源配置效率的极致追求。对于大多数日常使用者而言，他们并不需要昂贵的金融级超低抖动专线，也不需要全天候跑满千兆带宽；他们所真正需要的，是在想看视频时有 1080P/4K 的流畅加载，在查阅学术资料时有迅速的页面响应，在需要 AI 工具协作时有稳定的接口接入，并且不会因为忘记关后台而在月底面对高额的隐形扣费账单。
+            </p>
+            <p>
+              杏花云通过科学的流量分级机制，将网络资源的冗余开销降到最低，从而把节省下来的成本直接返还给终端用户。最低月付仅需 ¥3、最低年付仅需 ¥12 的定价，让网络开销降至一杯奶茶甚至一瓶矿泉水的零钱级别，真正实现了网络自由无负担。
+            </p>
+          </section>
+
+          <section id="section-4" class="article-section">
+            <h2>四、VLESS 现代协议架构与技术支撑</h2>
+            <p>
+              在底层通信协议的选型上，杏花云采用了现代化的 VLESS 协议。作为新一代轻量级无状态代理协议，VLESS 在设计哲学上摒弃了早期传统协议由于多次内部加解密所造成的 CPU 资源消耗与握手延迟。
+            </p>
+            <p>
+              VLESS 将通信安全的重心交付给底层成熟的 TLS 加密通道，从而使得代理客户端与服务节点之间的数据交互更加轻快简洁。这意味着无论是在性能受限的低功耗轻薄笔记本上，还是在电池容量宝贵的智能手机上，运行杏花云的 VLESS 订阅都能显著降低设备发热与后台电量损耗，带来更为丝滑的上网体验。
+            </p>
+          </section>
+
+          <section id="section-5" class="article-section">
+            <h2>五、全球多地区节点布局与接入特性</h2>
+            <p>
+              根据商家公开的服务资料，杏花云当前收录了中国香港、日本、新加坡以及美国四大核心区域的出口节点，覆盖了日常全球互联网访问的核心需求：
+            </p>
+            <ul class="styled-article-list">
+              <li><strong>中国香港（Hong Kong）：</strong> 依托得天独厚的地理近邻优势，物理往返延迟通常仅为 30ms–60ms，是浏览中文互联网、日常高频即时通讯以及低延迟云办公的首选。</li>
+              <li><strong>日本（Japan）：</strong> 作为亚太网络枢纽，拥有极高的国际带宽容载能力，非常适合访问亚太地区媒体资源、动漫视听及主流流媒体平台。</li>
+              <li><strong>新加坡（Singapore）：</strong> 东南亚核心数据中继，对国际知名云服务 API、主流 AI 语言模型接口具备良好的国际网络兼容性。</li>
+              <li><strong>美国（United States）：</strong> 拥有充沛廉价的海外骨干带宽，是进行大文件数据同步、开源软件仓库下载以及主流大型流媒体与前沿技术社区访问的大带宽出口。</li>
+            </ul>
+          </section>
+
+          <section id="section-6" class="article-section">
+            <h2>六、手机与电脑多平台客户端适配策略</h2>
+            <p>
+              一个优秀的网络服务必须搭配易用且稳定的客户端方能释放全部潜力。杏花云对主流操作系统提供了全面的客户端兼容方案：
+            </p>
+            <p>
+              在 PC 平台（Windows 与 macOS），我们强烈推荐使用开源的 <strong>Clash Verge Rev</strong>。其默认内置的开源 Mihomo（Clash Meta）内核原生完美支持 VLESS 协议，图形界面直观且支持智能规则分流；在 Android 移动端，推荐使用 <strong>Clash Meta for Android</strong> 或 <strong>Flclash</strong>，支持按应用分流，有效避免国内常用 App 误走代理；在 iOS 平台，则推荐搭配 Shadowrocket 或 Sing-box，实现全局与自动路由的无缝切换。
+            </p>
+          </section>
+
+          <section id="section-7" class="article-section">
+            <h2>七、从50GB至1000GB的周期套餐阶梯</h2>
+            <p>
+              杏花云建立了清晰透明的六款套餐体系。从超低预算的「年付50G」（¥12/年，折合¥1/月）与「年付100G」（¥24/年，折合¥2/月），到具备高度灵活性的「轻量版」（¥3/月，200GB）与主力畅销的「标准版」（¥6/月，500GB），再到面向高吞吐需求的「专业版」（¥10/月，1000GB）。每一级套餐的流量额度、并发设备与付费周期均清晰明了，杜绝任何隐性条款。
+            </p>
+          </section>
+
+          <section id="section-8" class="article-section">
+            <h2>八、专业版五台设备使用需求深度剖析</h2>
+            <p>
+              值得特别注意的是，杏花云的「专业版」将并发设备数量提升至全系最高的 <strong>5 台</strong>。在现代多终端数字化生活场景下，一个普通极客或一个小家庭往往拥有 1 部手机、1 台笔记本电脑、1 部平板电脑，甚至还有客厅智能电视或机顶盒。
+            </p>
+            <p>
+              以往入门级套餐由于仅限 2–3 台设备，多端同时登录容易触发风控断连；而专业版的 5 台配额配合每月 1000GB 的海量流量，能够轻松支撑整个工作空间或家庭环境的全天候设备在线，满足高清视听与大容量工作文件同步。
+            </p>
+          </section>
+
+          <section id="section-9" class="article-section">
+            <h2>九、365天1000GB一次性流量包的独特价值</h2>
+            <p>
+              针对非高频常驻用户，杏花云特别设计了「365天流量包」。该方案一次性支付 ¥20，用户可在整整一年的有效期限内随时按需消耗总计 1000GB 的流量。
+            </p>
+            <p>
+              与周期套餐不同，它没有每个月月底清零的焦虑，非常适合经常出差但出境频次不固定、将节点作为备用应急通道、或者日常仅有少量偶发性查阅需求的用户。它是一份真正的“低维护成本”网络保险。
+            </p>
+          </section>
+
+          <section id="section-10" class="article-section">
+            <h2>十、网络预算与流量真实利用率分析</h2>
+            <p>
+              许多消费者在选购网络服务时往往陷入“流量越大越划算”的误区，却忽视了自己的真实消耗率。例如购买了每月 1000GB 的套餐，如果当月实际仅使用了 50GB，那么剩余 950GB 的月费就造成了沉没浪费。
+            </p>
+            <p>
+              杏花云提倡“按需选购，精明预算”。通过我们自主研发的「Blossom Traffic Calculator 流量预算中心」，用户可以输入每日的网页时长、视频清晰度与远程会议时间，科学测算出真实的月度消耗量，从而精准匹配 200GB、500GB 还是 1000GB，让每一分钱都花在刀刃上。
+            </p>
+          </section>
+
+          <section id="section-11" class="article-section">
+            <h2>十一、AI 时代及现代数字生活连接需求</h2>
+            <p>
+              随着人工智能大语言模型（LLM）的全面爆发，日常工作与学术研究对于国际网络连接的依赖度已发生结构性跃升。从通过 ChatGPT 辅助文献翻译、利用 Claude 进行复杂代码重构，到借助海外学术数据库检索前沿论文，网络连接已不再单纯是娱乐消遣，而是个体数字化生产力的核心基础设施。
+            </p>
+            <p>
+              杏花云通过持续优化针对国际云服务与 AI 接口的节点路由，确保数据包在握手时具备更佳的通畅性，助力每一位创作者、学生与工程师在波澜壮阔的人工智能浪潮中保持与前沿技术同频共振。
+            </p>
+          </section>
+
+          <section id="section-12" class="article-section">
+            <h2>十二、品牌服务理念与真实性严正声明</h2>
+            <p>
+              真实是建立长期信任的唯一基石。在此，杏花云向全体用户作出如下严正说明：
+            </p>
+            <div class="veracity-block">
+              <p>1. <strong>创立时间：</strong> 杏花云品牌创立时间暂未对外公开，本站绝不凭空编造虚假发展历史、融资规模或创始团队背景。</p>
+              <p>2. <strong>网络线路：</strong> 商家公开资料宣称全节点 1 倍率及三网优化，具体线路受国际网络骨干波动影响，本站不将其宣称为独享 IEPL/IPLC 专线，亦不保证全天候零丢包。</p>
+              <p>3. <strong>设备配额：</strong> 全站套餐严格遵循 2 台、3 台或 5 台设备限制，杏花云不存在“不限设备”套餐。</p>
+              <p>4. <strong>AI 与流媒体：</strong> 第三方应用官方的 IP 封锁风控机制处于动态调整中，本站不作出“永久 100% 解锁”之绝对承诺，建议用户结合实际情况理性体验。</p>
+            </div>
+            <p>
+              我们将一如既往地恪守求真、透明、专业的准则，为中文搜索用户提供最具参考价值的 Clash 客户端指南与高性价比节点服务导航。
+            </p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-page-wrapper {
+    padding-bottom: 60px;
+  }
+
+  .breadcrumb-nav {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-cta);
+  }
+
+  .breadcrumb-list .current {
+    color: var(--color-cta);
+    font-weight: 600;
+  }
+
+  .about-hero {
+    margin-top: 16px;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .about-hero-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .about-hero-sub {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.2em;
+  }
+
+  .about-h1 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    color: var(--color-cta);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    line-height: 1.3;
+  }
+
+  .about-lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin-bottom: 20px;
+  }
+
+  .about-meta-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  /* Grid Layout */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  /* Sticky TOC Sidebar */
+  .toc-sidebar {
+    position: sticky;
+    top: calc(var(--nav-height) + 20px);
+  }
+
+  .toc-card {
+    padding: 24px;
+    background: #FFFDF9;
+  }
+
+  .toc-title {
+    font-size: 16px;
+    color: var(--color-cta);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .toc-list a {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+    display: block;
+    transition: all 0.2s ease;
+  }
+
+  .toc-list a:hover {
+    color: var(--color-cta);
+    padding-left: 4px;
+  }
+
+  /* Article Body */
+  .about-article-body {
+    padding: 48px;
+    background: #FFFFFF;
+  }
+
+  .article-section {
+    margin-bottom: 40px;
+    scroll-margin-top: calc(var(--nav-height) + 30px);
+  }
+
+  .article-section h2 {
+    font-size: 22px;
+    color: var(--color-text-main);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--color-border-subtle);
+    position: relative;
+  }
+
+  .article-section h2::before {
+    content: '🌸 ';
+    font-size: 16px;
+  }
+
+  .article-section p {
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--color-text-main);
+    margin-bottom: 16px;
+  }
+
+  .article-illo-row {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .styled-article-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+    padding-left: 8px;
+  }
+
+  .styled-article-list li {
+    font-size: 15px;
+    line-height: 1.7;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .styled-article-list li::before {
+    content: '•';
+    color: var(--color-cta);
+    position: absolute;
+    left: 4px;
+    font-size: 18px;
+  }
+
+  .veracity-block {
+    background: #FFF9F0;
+    border-left: 4px solid var(--color-forest-green);
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    margin: 20px 0;
+  }
+
+  .veracity-block p {
+    font-size: 14.5px !important;
+    line-height: 1.75;
+    margin-bottom: 8px !important;
+    color: var(--color-text-main);
+  }
+
+  .veracity-block p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  @media (max-width: 992px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .toc-sidebar {
+      display: none;
+    }
+    .about-article-body {
+      padding: 28px 20px;
+    }
+    .article-illo-row {
+      grid-template-columns: 1fr;
+    }
+    .article-illo-box {
+      display: none;
+    }
+  }
+</style>

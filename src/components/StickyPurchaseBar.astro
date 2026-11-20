@@ -1,0 +1,159 @@
+---
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+---
+
+<div id="sticky-purchase-bar" class="sticky-bar" aria-label="快捷购买导航条">
+  <div class="sticky-inner container">
+    <div class="sticky-info">
+      <span class="sticky-blossom-badge">🌸 杏花云服务</span>
+      <div class="sticky-plan-detail">
+        <span class="plan-label" id="sticky-plan-name">杏花云高速套餐</span>
+        <span class="plan-price" id="sticky-plan-price">低至 ¥3/月 · 12元年付起</span>
+      </div>
+    </div>
+
+    <div class="sticky-actions">
+      <a href="#pricing-plans" class="btn-secondary sticky-view-btn">
+        查看套餐
+      </a>
+      <a
+        href={affiliateUrl}
+        target="_blank"
+        rel="sponsored nofollow noopener noreferrer"
+        class="btn-primary sticky-buy-btn"
+        id="sticky-buy-link"
+        aria-label="立即前往杏花云官方授权购买页面"
+      >
+        <span>立即购买</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const bar = document.getElementById('sticky-purchase-bar');
+    if (!bar) return;
+
+    window.addEventListener('scroll', () => {
+      // Show sticky bar after scrolling past 350px
+      if (window.scrollY > 350) {
+        bar.classList.add('is-visible');
+      } else {
+        bar.classList.remove('is-visible');
+      }
+    }, { passive: true });
+
+    // Custom event to update sticky bar when user clicks a plan
+    window.addEventListener('select-plan', (e) => {
+      const { name, price, cycle } = e.detail;
+      const nameEl = document.getElementById('sticky-plan-name');
+      const priceEl = document.getElementById('sticky-plan-price');
+      if (nameEl) nameEl.textContent = name;
+      if (priceEl) priceEl.textContent = `${price} (${cycle})`;
+    });
+  })();
+</script>
+
+<style>
+  .sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 249, 240, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1.5px solid var(--color-sakura-pink);
+    box-shadow: 0 -6px 20px rgba(169, 80, 112, 0.12);
+    z-index: 95;
+    padding: 10px 0;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .sticky-bar.is-visible {
+    transform: translateY(0);
+  }
+
+  .sticky-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .sticky-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sticky-blossom-badge {
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(217, 130, 164, 0.3);
+  }
+
+  .sticky-plan-detail {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .plan-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-main);
+  }
+
+  .plan-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-cta);
+  }
+
+  .sticky-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sticky-view-btn {
+    padding: 8px 16px !important;
+    font-size: 13.5px !important;
+  }
+
+  .sticky-buy-btn {
+    padding: 8px 20px !important;
+    font-size: 13.5px !important;
+  }
+
+  @media (max-width: 640px) {
+    .sticky-blossom-badge {
+      display: none;
+    }
+    .sticky-view-btn {
+      display: none;
+    }
+    .plan-label {
+      font-size: 13px;
+    }
+    .plan-price {
+      font-size: 12px;
+    }
+    .sticky-buy-btn {
+      padding: 8px 16px !important;
+      font-size: 13px !important;
+    }
+  }
+</style>

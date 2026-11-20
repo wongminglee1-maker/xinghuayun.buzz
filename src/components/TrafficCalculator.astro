@@ -1,0 +1,572 @@
+---
+import AnzuIllustration from './AnzuIllustration.astro';
+
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+---
+
+<div class="calculator-container blossom-card" id="traffic-calculator">
+  <div class="calc-inner">
+    <div class="calc-header">
+      <span class="blossom-badge blossom-badge-green">🌸 实用测算工具</span>
+      <h3>Blossom Traffic Calculator · 杏花流量预算中心</h3>
+      <p class="calc-sub">
+        基于典型网络活动流量模型，透明测算您的每日、月度及年度流量消耗，量身匹配杏花云套餐并预估真实年支出。
+      </p>
+    </div>
+
+    <div class="calc-layout-grid">
+      <!-- Input Controls Panel -->
+      <div class="calc-inputs-panel">
+        <h4 class="panel-title">1. 配置您的日常使用习惯</h4>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-web-hours">网页与社交通讯：</label>
+            <span class="val-tag" id="web-val">2 小时/天</span>
+          </div>
+          <input type="range" id="calc-web-hours" min="0" max="10" step="0.5" value="2" class="calc-slider" />
+          <span class="param-tip">基准模型：约 0.15 GB / 小时（图文浏览、即时消息）</span>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-ai-hours">AI 工具交互（ChatGPT/Claude等）：</label>
+            <span class="val-tag" id="ai-val">1 小时/天</span>
+          </div>
+          <input type="range" id="calc-ai-hours" min="0" max="8" step="0.5" value="1" class="calc-slider" />
+          <span class="param-tip">基准模型：约 0.08 GB / 小时（文本与轻度代码交互）</span>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-video-hours">流媒体视频时长：</label>
+            <span class="val-tag" id="video-val">2 小时/天</span>
+          </div>
+          <input type="range" id="calc-video-hours" min="0" max="12" step="0.5" value="2" class="calc-slider" />
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-video-res">视频画质清晰度：</label>
+          </div>
+          <select id="calc-video-res" class="calc-select">
+            <option value="0.9">720P 高清（约 0.9 GB / 小时）</option>
+            <option value="1.8" selected>1080P 全高清（约 1.8 GB / 小时）</option>
+            <option value="7.0">4K 超高清（约 7.0 GB / 小时）</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-meeting-hours">远程视频会议 / 语音协作：</label>
+            <span class="val-tag" id="meeting-val">1 小时/天</span>
+          </div>
+          <input type="range" id="calc-meeting-hours" min="0" max="6" step="0.5" value="1" class="calc-slider" />
+          <span class="param-tip">基准模型：双向高清约 0.8 GB / 小时</span>
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-download-gb">月度大文件 / 游戏更新：</label>
+            <span class="val-tag" id="download-val">20 GB/月</span>
+          </div>
+          <input type="range" id="calc-download-gb" min="0" max="300" step="10" value="20" class="calc-slider" />
+        </div>
+
+        <div class="input-group">
+          <div class="input-label-row">
+            <label for="calc-days">每月有效联网天数：</label>
+            <span class="val-tag" id="days-val">30 天</span>
+          </div>
+          <input type="range" id="calc-days" min="5" max="30" step="1" value="30" class="calc-slider" />
+        </div>
+      </div>
+
+      <!-- Output Results Panel -->
+      <div class="calc-outputs-panel">
+        <div class="output-header-row">
+          <AnzuIllustration state="budget" size={76} />
+          <div>
+            <h4 class="panel-title">2. 测算分析与预算匹配</h4>
+            <span class="calc-model-badge">公开透明公式估算</span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="metric-cards-grid">
+          <div class="metric-card">
+            <span class="m-label">预计每日消耗</span>
+            <span class="m-value" id="calc-daily-res">4.7 GB</span>
+          </div>
+          <div class="metric-card">
+            <span class="m-label">预计月度消耗</span>
+            <span class="m-value highlight" id="calc-monthly-res">161 GB</span>
+          </div>
+          <div class="metric-card">
+            <span class="m-label">预计年度消耗</span>
+            <span class="m-value" id="calc-yearly-res">1,932 GB</span>
+          </div>
+        </div>
+
+        <!-- Scenario Breakdown Bar -->
+        <div class="breakdown-wrap">
+          <span class="breakdown-title">各场景流量占比构成</span>
+          <div class="breakdown-bar">
+            <div id="bar-video" class="bar-seg seg-video" title="视频"></div>
+            <div id="bar-meeting" class="bar-seg seg-meeting" title="会议"></div>
+            <div id="bar-web" class="bar-seg seg-web" title="网页"></div>
+            <div id="bar-download" class="bar-seg seg-download" title="下载"></div>
+            <div id="bar-ai" class="bar-seg seg-ai" title="AI交互"></div>
+          </div>
+          <div class="breakdown-legend">
+            <span><i class="dot dot-video"></i> 视频 (<span id="pct-video">0%</span>)</span>
+            <span><i class="dot dot-meeting"></i> 会议 (<span id="pct-meeting">0%</span>)</span>
+            <span><i class="dot dot-web"></i> 浏览 (<span id="pct-web">0%</span>)</span>
+            <span><i class="dot dot-download"></i> 下载 (<span id="pct-download">0%</span>)</span>
+            <span><i class="dot dot-ai"></i> AI (<span id="pct-ai">0%</span>)</span>
+          </div>
+        </div>
+
+        <!-- Recommended Plan Box -->
+        <div class="calc-matched-box" id="calc-plan-box">
+          <!-- Dynamically updated via JS -->
+        </div>
+
+        <div class="calc-disclaimer">
+          * 注：以上结果系根据用户设定的时长与行业平均码率建立的理论估算模型，实际消耗受视频编码（如AV1/H.264）、页面缓存策略及广告过滤等影响，不作为网络底层计费凭据。
+        </div>
+
+        <div class="calc-cta-row">
+          <a
+            href={affiliateUrl}
+            target="_blank"
+            rel="sponsored nofollow noopener noreferrer"
+            class="btn-primary"
+            style="width: 100%; text-align: center;"
+          >
+            以推荐方案前往杏花云收银台
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const webEl = document.getElementById('calc-web-hours');
+    const aiEl = document.getElementById('calc-ai-hours');
+    const videoEl = document.getElementById('calc-video-hours');
+    const resEl = document.getElementById('calc-video-res');
+    const meetingEl = document.getElementById('calc-meeting-hours');
+    const downloadEl = document.getElementById('calc-download-gb');
+    const daysEl = document.getElementById('calc-days');
+
+    const webVal = document.getElementById('web-val');
+    const aiVal = document.getElementById('ai-val');
+    const videoVal = document.getElementById('video-val');
+    const meetingVal = document.getElementById('meeting-val');
+    const downloadVal = document.getElementById('download-val');
+    const daysVal = document.getElementById('days-val');
+
+    const dailyRes = document.getElementById('calc-daily-res');
+    const monthlyRes = document.getElementById('calc-monthly-res');
+    const yearlyRes = document.getElementById('calc-yearly-res');
+    const planBox = document.getElementById('calc-plan-box');
+
+    const barVideo = document.getElementById('bar-video');
+    const barMeeting = document.getElementById('bar-meeting');
+    const barWeb = document.getElementById('bar-web');
+    const barDownload = document.getElementById('bar-download');
+    const barAi = document.getElementById('bar-ai');
+
+    const pctVideo = document.getElementById('pct-video');
+    const pctMeeting = document.getElementById('pct-meeting');
+    const pctWeb = document.getElementById('pct-web');
+    const pctDownload = document.getElementById('pct-download');
+    const pctAi = document.getElementById('pct-ai');
+
+    function updateCalculator() {
+      const webH = parseFloat(webEl.value);
+      const aiH = parseFloat(aiEl.value);
+      const videoH = parseFloat(videoEl.value);
+      const videoRate = parseFloat(resEl.value);
+      const meetingH = parseFloat(meetingEl.value);
+      const downloadM = parseFloat(downloadEl.value);
+      const days = parseInt(daysEl.value, 10);
+
+      // Value text updates
+      webVal.textContent = `${webH} 小时/天`;
+      aiVal.textContent = `${aiH} 小时/天`;
+      videoVal.textContent = `${videoH} 小时/天`;
+      meetingVal.textContent = `${meetingH} 小时/天`;
+      downloadVal.textContent = `${downloadM} GB/月`;
+      daysVal.textContent = `${days} 天`;
+
+      // Daily calculations
+      const webDaily = webH * 0.15;
+      const aiDaily = aiH * 0.08;
+      const videoDaily = videoH * videoRate;
+      const meetingDaily = meetingH * 0.8;
+
+      const dailyTotal = webDaily + aiDaily + videoDaily + meetingDaily;
+      const monthlyTotal = Math.round((dailyTotal * days) + downloadM);
+      const yearlyTotal = monthlyTotal * 12;
+
+      dailyRes.textContent = `${dailyTotal.toFixed(1)} GB`;
+      monthlyRes.textContent = `${monthlyTotal} GB`;
+      yearlyRes.textContent = `${yearlyTotal.toLocaleString()} GB`;
+
+      // Percentage breakdown
+      const totalMonth = monthlyTotal || 1;
+      const pVideo = Math.round(((videoDaily * days) / totalMonth) * 100);
+      const pMeeting = Math.round(((meetingDaily * days) / totalMonth) * 100);
+      const pWeb = Math.round(((webDaily * days) / totalMonth) * 100);
+      const pDownload = Math.round((downloadM / totalMonth) * 100);
+      const pAi = Math.max(0, 100 - (pVideo + pMeeting + pWeb + pDownload));
+
+      barVideo.style.width = `${pVideo}%`;
+      barMeeting.style.width = `${pMeeting}%`;
+      barWeb.style.width = `${pWeb}%`;
+      barDownload.style.width = `${pDownload}%`;
+      barAi.style.width = `${pAi}%`;
+
+      pctVideo.textContent = `${pVideo}%`;
+      pctMeeting.textContent = `${pMeeting}%`;
+      pctWeb.textContent = `${pWeb}%`;
+      pctDownload.textContent = `${pDownload}%`;
+      pctAi.textContent = `${pAi}%`;
+
+      // Match Plan
+      let planName = "";
+      let planTheme = "";
+      let planPrice = "";
+      let oneTimeNote = "";
+      let annualBudget = "";
+
+      if (monthlyTotal <= 50) {
+        planName = "年付50G";
+        planTheme = "初绽杏花";
+        planPrice = "年付 ¥12（折合 ¥1/月）";
+        annualBudget = "¥12 / 年";
+        oneTimeNote = "若一年内总消耗低于 1000GB 且每月极不固定，亦可了解 365天流量包（¥20/次）。";
+      } else if (monthlyTotal <= 100) {
+        planName = "年付100G";
+        planTheme = "双花晨露";
+        planPrice = "年付 ¥24（折合 ¥2/月）";
+        annualBudget = "¥24 / 年";
+        oneTimeNote = "年预计消耗约 1200GB，周期年付更具性价比。";
+      } else if (monthlyTotal <= 200) {
+        planName = "轻量版 (200GB/月)";
+        planTheme = "春日花枝";
+        planPrice = "月付 ¥3（年付 ¥36）";
+        annualBudget = "月付连续12月为 ¥36 / 年";
+        oneTimeNote = "月流量充裕，适合月付随时按需续费。";
+      } else if (monthlyTotal <= 500) {
+        planName = "标准版 (500GB/月)";
+        planTheme = "杏花庭院";
+        planPrice = "月付 ¥6（年付 ¥72）";
+        annualBudget = "月付连续12月为 ¥72 / 年";
+        oneTimeNote = "支持3台设备，兼顾高清视听与办公协作，主力平衡款。";
+      } else if (monthlyTotal <= 1000) {
+        planName = "专业版 (1000GB/月)";
+        planTheme = "千花盛放";
+        planPrice = "月付 ¥10（年付参考区间 ¥90–120）";
+        annualBudget = "月付连续12月为 ¥120，年付参考区间 ¥90–120";
+        oneTimeNote = "支持5台设备，千GB超大配额，解决全家或多设备流量焦虑。";
+      } else {
+        planName = "超出已知单套餐月流量";
+        planTheme = "超大用量";
+        planPrice = "需组合套餐或规划用量";
+        annualBudget = "视购买账号数而定";
+        oneTimeNote = "杏花云公开资料最大单套餐月流量为 1000GB，建议按需购买多个账号。";
+      }
+
+      planBox.innerHTML = `
+        <div class="matched-header">
+          <span class="m-plan-badge">🌸 建议匹配方案</span>
+          <h4>${planName} · ${planTheme}</h4>
+        </div>
+        <div class="matched-cost-info">
+          <div class="cost-item">
+            <span class="c-label">推荐规格售价：</span>
+            <span class="c-val">${planPrice}</span>
+          </div>
+          <div class="cost-item">
+            <span class="c-label">预估年度支出：</span>
+            <span class="c-val highlight">${annualBudget}</span>
+          </div>
+        </div>
+        <p class="matched-one-time-tip">💡 <strong>流量包考量：</strong>${oneTimeNote}</p>
+      `;
+    }
+
+    [webEl, aiEl, videoEl, resEl, meetingEl, downloadEl, daysEl].forEach(el => {
+      el.addEventListener('input', updateCalculator);
+    });
+
+    updateCalculator();
+  })();
+</script>
+
+<style>
+  .calculator-container {
+    padding: 36px 32px;
+    margin: 40px auto;
+  }
+
+  .calc-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .calc-header h3 {
+    font-size: 24px;
+    color: var(--color-cta);
+    margin: 8px 0;
+  }
+
+  .calc-sub {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .calc-layout-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 36px;
+  }
+
+  .calc-inputs-panel {
+    background: #FFFDF9;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .panel-title {
+    font-size: 16px;
+    color: var(--color-forest-green);
+    margin-bottom: 18px;
+    border-bottom: 1.5px solid var(--color-border-green);
+    padding-bottom: 8px;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  .input-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .val-tag {
+    font-size: 12.5px;
+    color: var(--color-cta);
+    font-weight: 700;
+    background: var(--color-bg-tint);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+
+  .calc-slider {
+    width: 100%;
+    accent-color: var(--color-cta);
+  }
+
+  .calc-select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border-subtle);
+    background: #FFFFFF;
+    color: var(--color-text-main);
+    font-size: 13.5px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .param-tip {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Output Panel */
+  .calc-outputs-panel {
+    background: linear-gradient(135deg, #FFF9F0 0%, #E3EEDF 100%);
+    border: 1.5px solid var(--color-soft-green);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(82, 107, 83, 0.08);
+  }
+
+  .output-header-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .calc-model-badge {
+    font-size: 11px;
+    color: var(--color-forest-green);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-soft-green);
+  }
+
+  .metric-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .metric-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(82, 107, 83, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  .m-label {
+    display: block;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+  }
+
+  .m-value {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--color-text-main);
+  }
+
+  .m-value.highlight {
+    color: var(--color-cta);
+  }
+
+  /* Breakdown */
+  .breakdown-wrap {
+    background: #FFFFFF;
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(82, 107, 83, 0.15);
+  }
+
+  .breakdown-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .breakdown-bar {
+    display: flex;
+    height: 14px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    background: #EFEFEF;
+    margin-bottom: 8px;
+  }
+
+  .bar-seg {
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+
+  .seg-video { background: #D982A4; }
+  .seg-meeting { background: #526B53; }
+  .seg-web { background: #F4BFD0; }
+  .seg-download { background: #826D74; }
+  .seg-ai { background: #C6DFC1; }
+
+  .breakdown-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 11.5px;
+    color: var(--color-text-muted);
+  }
+
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 2px;
+  }
+
+  .dot-video { background: #D982A4; }
+  .dot-meeting { background: #526B53; }
+  .dot-web { background: #F4BFD0; }
+  .dot-download { background: #826D74; }
+  .dot-ai { background: #C6DFC1; }
+
+  /* Matched Box */
+  .calc-matched-box {
+    background: #FFFFFF;
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    border: 1px solid var(--color-border-subtle);
+    margin-bottom: 16px;
+  }
+
+  .m-plan-badge {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .calc-matched-box h4 {
+    font-size: 17px;
+    color: var(--color-text-main);
+    margin: 4px 0 10px;
+  }
+
+  .matched-cost-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .c-val.highlight {
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .matched-one-time-tip {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-forest-green);
+    margin: 0;
+  }
+
+  .calc-disclaimer {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .calc-layout-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

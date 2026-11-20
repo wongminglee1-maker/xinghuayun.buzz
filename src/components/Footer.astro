@@ -1,0 +1,371 @@
+---
+import AnzuIllustration from './AnzuIllustration.astro';
+
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+const currentYear = new Date().getFullYear();
+
+// Reserved friendship links configuration (hidden until live deployment instruction)
+const showFriendshipLinks = false;
+const friendshipLinks = [
+  { name: "杏花云 C01 官方资讯", url: "https://xinghuayun.mom/" },
+  { name: "杏花云 C02 技术专站", url: "https://xinghuacloud.cfd/" }
+];
+---
+
+<footer class="spring-garden-footer" id="footer-section">
+  <!-- Subtle decorative blossom divider wave -->
+  <div class="footer-wave-top">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C300,50 600,10 900,45 C1050,60 1150,20 1200,30 L1200,60 L0,60 Z" fill="#FFF4F7" />
+    </svg>
+  </div>
+
+  <div class="footer-main container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-col brand-col">
+        <div class="footer-brand-title">
+          <span class="f-blossom">🌸</span>
+          <span class="f-name-zh">杏花云</span>
+          <span class="f-name-en">XINGHUA CLOUD</span>
+        </div>
+        <p class="footer-brand-positioning">
+          超高性价比机场 · 轻量化全球网络连接 · 经济型大流量订阅服务。
+        </p>
+        <p class="footer-brand-desc">
+          聚焦 VLESS 协议、Clash 客户端生态与低门槛订阅方案，面向日常浏览、学生学习、AI 探索与多设备协同需求，提供透明、实在的网络连接参考。
+        </p>
+        <div class="footer-anzu-badge">
+          <AnzuIllustration state="welcome" size={60} />
+          <div class="badge-text">
+            <strong>杏子 · ANZU</strong>
+            <span>春日陪伴向导</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Plans & Pricing -->
+      <div class="footer-col">
+        <h3 class="footer-heading">六款杏花套餐</h3>
+        <ul class="footer-links">
+          <li><a href="/#pricing-plans">年付50G（¥12/年 · 2台设备）</a></li>
+          <li><a href="/#pricing-plans">年付100G（¥24/年 · 3台设备）</a></li>
+          <li><a href="/#pricing-plans">轻量版（¥3/月 · 200GB/月）</a></li>
+          <li><a href="/#pricing-plans">标准版（¥6/月 · 500GB/月）</a></li>
+          <li><a href="/#pricing-plans">专业版（¥10/月 · 1000GB/月）</a></li>
+          <li><a href="/#pricing-plans">365天流量包（¥20/次 · 1000GB总量）</a></li>
+          <li>
+            <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="footer-buy-highlight">
+              👉 前往官方收银台选购
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Clash & Original Articles -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Clash与知识中心</h3>
+        <ul class="footer-links">
+          <li><a href="/clients/">Clash多平台客户端指南</a></li>
+          <li><a href="/articles/clash-airport-client-selection-2026/">2026 Clash机场推荐</a></li>
+          <li><a href="/articles/clash-node-purchase-guide/">Clash节点购买指南</a></li>
+          <li><a href="/articles/stable-clash-subscription/">稳定Clash订阅推荐2026</a></li>
+          <li><a href="/articles/clash-verge-airport-guide/">Clash Verge机场推荐</a></li>
+          <li><a href="/articles/clash-meta-node-guide/">Clash Meta节点推荐</a></li>
+          <li><a href="/articles/unlimited-device-airport-guide/">不限设备机场推荐指南</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Service & Legal -->
+      <div class="footer-col">
+        <h3 class="footer-heading">服务与信息公开</h3>
+        <ul class="footer-links">
+          <li><a href="/about/">关于杏花云（理念与技术）</a></li>
+          <li><a href="/#faq-section">常见问题解答 FAQ（36项）</a></li>
+          <li><a href="/#global-nodes">全球节点分布（HK/JP/SG/US）</a></li>
+          <li><a href="/#traffic-calculator">流量预算计算器</a></li>
+          <li><a href="/#plan-advisor">智能套餐助手</a></li>
+          <li><span class="text-muted">最后更新：2026年11月</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Friendship Links (Conditional) -->
+    {showFriendshipLinks && (
+      <div class="friendship-links-wrap">
+        <span class="friendship-label">杏花云项目组生态连接：</span>
+        <div class="friendship-items">
+          {friendshipLinks.map(link => (
+            <a href={link.url} target="_blank" rel="nofollow noopener noreferrer" class="friendship-item">
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Affiliate Disclosure Banner -->
+    <div class="footer-disclosure-box">
+      <p>
+        <strong>推广合作与服务关系披露：</strong>
+        本站（xinghuayun.buzz）属于杏花云（XingHua Cloud）第三站技术资讯与导购门户，致力于提供 Clash 客户端知识、VLESS 协议科普与套餐成本分析。所有购买与订阅按钮均跳转至服务提供方授权结算中心，本站可能因此获得一定比例的推荐返佣。本站非网络底层运营商，所展示节点性能、限速政策及流媒体支持均采纳商家公开声明，实际体验请以实时自测为准。
+      </p>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom-bar">
+      <div class="copyright-text">
+        © {currentYear} 杏花云 XingHua Cloud (xinghuayun.buzz). 保留所有权利。UI框架：Blossom Girl MAX.
+      </div>
+      <div class="footer-sub-links">
+        <a href="/robots.txt" target="_blank">Robots.txt</a>
+        <span>·</span>
+        <a href="/sitemap.xml" target="_blank">Sitemap</a>
+        <span>·</span>
+        <a href="/about/">免责声明</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .spring-garden-footer {
+    background: #FFF4F7;
+    position: relative;
+    border-top: 1px solid var(--color-border-subtle);
+    margin-top: 60px;
+    padding-bottom: 40px;
+  }
+
+  .footer-wave-top {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .footer-wave-top svg {
+    width: 100%;
+    height: 50px;
+  }
+
+  .footer-main {
+    padding-top: 20px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 40px;
+  }
+
+  .brand-col {
+    padding-right: 20px;
+  }
+
+  .footer-brand-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .f-blossom {
+    font-size: 24px;
+  }
+
+  .f-name-zh {
+    font-size: 22px;
+    font-weight: 800;
+    font-family: var(--font-serif);
+    color: var(--color-cta);
+  }
+
+  .f-name-en {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.12em;
+  }
+
+  .footer-brand-positioning {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+    margin-bottom: 10px;
+  }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+  }
+
+  .footer-anzu-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-sakura-pink);
+    max-width: 240px;
+  }
+
+  .badge-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge-text strong {
+    font-size: 13px;
+    color: var(--color-cta);
+  }
+
+  .badge-text span {
+    font-size: 11px;
+    color: var(--color-forest-green);
+  }
+
+  .footer-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    background: var(--color-cta);
+    border-radius: 2px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-cta);
+    padding-left: 4px;
+  }
+
+  .footer-buy-highlight {
+    color: var(--color-cta) !important;
+    font-weight: 700;
+  }
+
+  .text-muted {
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  /* Friendship links */
+  .friendship-links-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--color-sakura-pink);
+    margin-bottom: 24px;
+  }
+
+  .friendship-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+  }
+
+  .friendship-items {
+    display: flex;
+    gap: 14px;
+  }
+
+  .friendship-item {
+    font-size: 13px;
+    color: var(--color-cta);
+  }
+
+  /* Disclosure box */
+  .footer-disclosure-box {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(217, 130, 164, 0.25);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .footer-disclosure-box p {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer-disclosure-box strong {
+    color: var(--color-cta);
+  }
+
+  .footer-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+  }
+
+  .footer-sub-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-sub-links a {
+    color: var(--color-text-muted);
+  }
+
+  .footer-sub-links a:hover {
+    color: var(--color-cta);
+  }
+
+  @media (max-width: 992px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .footer-bottom-bar {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

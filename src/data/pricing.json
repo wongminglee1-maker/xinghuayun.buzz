@@ -1,0 +1,170 @@
+[
+  {
+    "id": "annual-50g",
+    "name": "年付50G",
+    "visualTheme": "初绽杏花",
+    "badge": "入门极简",
+    "trafficType": "monthly",
+    "trafficAmount": 50,
+    "trafficDisplay": "50GB / 月",
+    "devices": 2,
+    "prices": {
+      "yearly": 12
+    },
+    "defaultCycle": "yearly",
+    "effectiveMonthly": 1.0,
+    "costPerGb": 0.02,
+    "description": "超低门槛经济型入门方案，适合网页查阅、轻度文本与备用设备连接。",
+    "features": [
+      "每月 50GB 基础流量",
+      "支持最多 2 台设备同时连接",
+      "年付一次性仅需 ¥12（折合 ¥1/月）",
+      "VLESS 协议通用节点支持",
+      "适合学生、低频浏览与轻度通讯"
+    ],
+    "scenario": "极轻度浏览 / 查阅学术资料 / 轻量级文本日常",
+    "availableCycles": ["yearly"]
+  },
+  {
+    "id": "annual-100g",
+    "name": "年付100G",
+    "visualTheme": "双花晨露",
+    "badge": "轻量年付",
+    "trafficType": "monthly",
+    "trafficAmount": 100,
+    "trafficDisplay": "100GB / 月",
+    "devices": 3,
+    "prices": {
+      "yearly": 24
+    },
+    "defaultCycle": "yearly",
+    "effectiveMonthly": 2.0,
+    "costPerGb": 0.02,
+    "description": "轻度多设备方案，支持3台常用设备，全年无忧稳定连接。",
+    "features": [
+      "每月 100GB 充裕轻量流量",
+      "支持最多 3 台设备协同连接",
+      "年付仅需 ¥24（折合 ¥2/月）",
+      "覆盖主流亚太与美洲节点资料",
+      "手机与电脑多端日常同步"
+    ],
+    "scenario": "手机+电脑双端日常 / 网页浏览 / 轻度社交媒体",
+    "availableCycles": ["yearly"]
+  },
+  {
+    "id": "lightweight",
+    "name": "轻量版",
+    "visualTheme": "春日花枝",
+    "badge": "灵活月付",
+    "trafficType": "monthly",
+    "trafficAmount": 200,
+    "trafficDisplay": "200GB / 月",
+    "devices": 2,
+    "prices": {
+      "monthly": 3,
+      "quarterly": 9,
+      "halfYearly": 18,
+      "yearly": 36
+    },
+    "defaultCycle": "monthly",
+    "effectiveMonthly": 3.0,
+    "costPerGb": 0.015,
+    "description": "低门槛灵活周期订阅，月付仅需 ¥3 起，随时按需调整续费。",
+    "features": [
+      "每月 200GB 实惠大流量",
+      "支持最多 2 台设备连接",
+      "月付 ¥3 / 季付 ¥9 / 半年 ¥18 / 年付 ¥36",
+      "支持 VLESS 协议及主流订阅格式",
+      "日常办公、AI 问答交互与网页视听"
+    ],
+    "scenario": "AI 工具探索 / 办公查阅 / 随时月付灵活退改",
+    "availableCycles": ["monthly", "quarterly", "halfYearly", "yearly"]
+  },
+  {
+    "id": "standard",
+    "name": "标准版",
+    "visualTheme": "杏花庭院",
+    "badge": "热门高性价比",
+    "trafficType": "monthly",
+    "trafficAmount": 500,
+    "trafficDisplay": "500GB / 月",
+    "devices": 3,
+    "prices": {
+      "monthly": 6,
+      "quarterly": 18,
+      "halfYearly": 36,
+      "yearly": 72
+    },
+    "defaultCycle": "monthly",
+    "effectiveMonthly": 6.0,
+    "costPerGb": 0.012,
+    "description": "绝大多数用户的平衡首选，500GB大容量兼顾日常影音与办公协同。",
+    "features": [
+      "每月 500GB 充沛大流量",
+      "支持最多 3 台设备同时使用",
+      "月付仅 ¥6（每GB低至 ¥0.012）",
+      "支持主流流媒体与 AI 应用环境测试",
+      "季付 ¥18 / 半年 ¥36 / 年付 ¥72"
+    ],
+    "scenario": "高清视频串流 / 远程办公 / 多端全天候连接",
+    "availableCycles": ["monthly", "quarterly", "halfYearly", "yearly"]
+  },
+  {
+    "id": "pro",
+    "name": "专业版",
+    "visualTheme": "千花盛放",
+    "badge": "千GB旗舰",
+    "trafficType": "monthly",
+    "trafficAmount": 1000,
+    "trafficDisplay": "1000GB / 月",
+    "devices": 5,
+    "prices": {
+      "monthly": 10,
+      "quarterly": 30,
+      "halfYearly": 60,
+      "yearly": 90,
+      "yearlyDisplay": "¥90–120 (参考区间)"
+    },
+    "defaultCycle": "monthly",
+    "effectiveMonthly": 10.0,
+    "effectiveMonthlyYearlyRange": "¥7.50–10.00",
+    "costPerGb": 0.01,
+    "costPerGbYearlyRange": "¥0.0075–0.0100",
+    "description": "针对多设备与高流量环境的专业方案，支持5台设备与每月1000GB流量。",
+    "features": [
+      "每月 1000GB 顶级流量配额",
+      "支持最多 5 台设备同时在线",
+      "月付 ¥10 / 季付 ¥30 / 半年付 ¥60",
+      "年付参考区间 ¥90–120（具体以购买页为准）",
+      "理论每GB成本低至 ¥0.0075–0.0100"
+    ],
+    "scenario": "家庭/团队多设备共用 / 4K高清长视频 / 频繁大文件下载",
+    "availableCycles": ["monthly", "quarterly", "halfYearly", "yearly"]
+  },
+  {
+    "id": "traffic-pack-365",
+    "name": "365天流量包",
+    "visualTheme": "四季花境",
+    "badge": "备用长效",
+    "trafficType": "one-time",
+    "trafficAmount": 1000,
+    "trafficDisplay": "1000GB 总量（365天有效）",
+    "devices": 3,
+    "prices": {
+      "oneTime": 20
+    },
+    "defaultCycle": "oneTime",
+    "effectiveMonthly": null,
+    "costPerGb": 0.02,
+    "description": "一次性支付无周期订阅压力，1000GB总量365天超长有效期，用多少算多少。",
+    "features": [
+      "1000GB 总流量配额（非每月重置）",
+      "365 天有效期（非永久有效）",
+      "单次支付仅需 ¥20（无自动扣费）",
+      "支持最多 3 台设备协同使用",
+      "低频差旅与备用网络的省心之选"
+    ],
+    "scenario": "偶尔出差 / 应急备用节点 / 流量消耗极慢的慢速用户",
+    "availableCycles": ["oneTime"]
+  }
+]

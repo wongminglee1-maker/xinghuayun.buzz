@@ -1,0 +1,280 @@
+/* Blossom Girl MAX - Global Stylesheet for XingHua Cloud (xinghuayun.buzz) */
+
+:root {
+  /* Brand Blossom Palette */
+  --color-sakura-pink: #F4BFD0;
+  --color-cream-white: #FFF9F0;
+  --color-soft-green: #C6DFC1;
+  --color-petal-rose: #D982A4;
+  --color-forest-green: #526B53;
+  --color-bg-tint: #F8E1E9;
+  --color-green-card: #E3EEDF;
+  --color-text-main: #493C40;
+  --color-text-muted: #826D74;
+  --color-cta: #A95070;
+  --color-cta-hover: #8F3D58;
+  --color-white: #FFFFFF;
+  --color-border-subtle: rgba(217, 130, 164, 0.22);
+  --color-border-green: rgba(82, 107, 83, 0.18);
+  --color-card-shadow: 0 10px 30px -5px rgba(169, 80, 112, 0.08), 0 4px 12px -2px rgba(82, 107, 83, 0.05);
+  --color-glass-bg: rgba(255, 249, 240, 0.88);
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, "SimSun", serif;
+
+  /* Layout */
+  --max-w-content: 1200px;
+  --max-w-article: 840px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --nav-height: 72px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-white);
+  color: var(--color-text-main);
+  line-height: 1.7;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 10% 20%, rgba(244, 191, 208, 0.25) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(198, 223, 193, 0.3) 0%, transparent 45%),
+              var(--color-cream-white);
+  background-attachment: fixed;
+}
+
+/* Base Headings & Links */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-main);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--color-cta);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-cta-hover);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Glassmorphism & Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-w-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.article-container {
+  width: 100%;
+  max-width: var(--max-w-article);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.blossom-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--color-card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+}
+
+.blossom-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -6px rgba(169, 80, 112, 0.12), 0 6px 16px -2px rgba(82, 107, 83, 0.08);
+  border-color: var(--color-petal-rose);
+}
+
+.blossom-card-green {
+  background: var(--color-green-card);
+  border: 1px solid var(--color-border-green);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--color-cta) 0%, var(--color-petal-rose) 100%);
+  color: #FFFFFF !important;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(169, 80, 112, 0.28);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-cta-hover) 0%, var(--color-cta) 100%);
+  box-shadow: 0 6px 20px rgba(169, 80, 112, 0.38);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  background: var(--color-white);
+  color: var(--color-text-main) !important;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1.5px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(73, 60, 64, 0.04);
+  transition: all 0.25s ease;
+  text-decoration: none !important;
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-tint);
+  border-color: var(--color-petal-rose);
+  color: var(--color-cta) !important;
+  transform: translateY(-2px);
+}
+
+.btn-soft-green {
+  background: var(--color-green-card);
+  border-color: var(--color-soft-green);
+  color: var(--color-forest-green) !important;
+}
+
+.btn-soft-green:hover {
+  background: #D5E7CE;
+  border-color: var(--color-forest-green);
+}
+
+/* Badge */
+.blossom-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--color-bg-tint);
+  color: var(--color-cta);
+  border: 1px solid rgba(217, 130, 164, 0.3);
+}
+
+.blossom-badge-green {
+  background: var(--color-green-card);
+  color: var(--color-forest-green);
+  border-color: rgba(82, 107, 83, 0.25);
+}
+
+/* Section Header standard */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-header .sub-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.section-header p {
+  color: var(--color-text-muted);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+}
+
+/* Animations & Petal Fall */
+@keyframes petalFall {
+  0% {
+    transform: translate(0, -10px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(60px, 100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.falling-petal {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  animation: petalFall linear infinite;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .falling-petal {
+    display: none !important;
+  }
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 24px;
+  }
+  .section-header {
+    margin-bottom: 32px;
+  }
+}

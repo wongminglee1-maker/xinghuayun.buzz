@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+import HeaderNav from '../components/HeaderNav.astro';
+import Footer from '../components/Footer.astro';
+import StickyPurchaseBar from '../components/StickyPurchaseBar.astro';
+import AnzuDialogueSystem from '../components/AnzuDialogueSystem.astro';
+import SpringBlossomIntro from '../components/SpringBlossomIntro.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: object | object[];
+  showIntro?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '/',
+  ogType = 'website',
+  jsonLd,
+  showIntro = false,
+} = Astro.props;
+
+const siteUrl = 'https://xinghuayun.buzz';
+const canonicalUrl = new URL(canonicalPath, siteUrl).href;
+const currentPath = Astro.url.pathname;
+const ogImage = `${siteUrl}/assets/og-image.svg`;
+
+// Base WebSite & Organization structured data
+const baseJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': '杏花云 XingHua Cloud',
+    'url': siteUrl,
+    'description': '超高性价比机场 · 轻量化全球网络连接 · 经济型大流量订阅服务与Clash指南',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': `${siteUrl}/articles/?q={search_term_string}`,
+      'query-input': 'required name=search_term_string'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': '杏花云 XingHua Cloud',
+    'url': siteUrl,
+    'logo': `${siteUrl}/favicon.svg`,
+    'description': '提供 VLESS 协议、通用订阅转换、Clash Verge 与多平台客户端配置指南的数字网络服务导购与技术资讯站'
+  }
+];
+
+const mergedJsonLd = jsonLd
+  ? Array.isArray(jsonLd)
+    ? [...baseJsonLd, ...jsonLd]
+    : [...baseJsonLd, jsonLd]
+  : baseJsonLd;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="杏花云 XingHua Cloud" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Bing Webmaster & Search Verification Meta -->
+    <meta name="msvalidate.01" content="XINGHUAYUN_BUZZ_BING_VERIFICATION_TOKEN" />
+
+    <!-- Structured Data (JSON-LD) -->
+    {mergedJsonLd.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+  </head>
+  <body>
+    {showIntro && <SpringBlossomIntro />}
+    
+    <HeaderNav currentPath={currentPath} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <AnzuDialogueSystem />
+    <StickyPurchaseBar />
+    <Footer />
+  </body>
+</html>
