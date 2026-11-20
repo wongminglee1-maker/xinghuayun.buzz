@@ -1,0 +1,465 @@
+---
+import Layout from '../layouts/Layout.astro';
+import faqsData from '../data/faqs.json';
+import brandData from '../data/brand.json';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+
+const pageTitle = "杏花云常见问题｜Clash订阅、VLESS客户端与设备连接解答";
+const pageDesc = "杏花云官方常见问题知识中心。精选8大高频疑问，权威解答VLESS与传统VPN区别、Clash Verge Rev配置、Mihomo内核支持、iOS/Android/Windows/Mac多端连接、并发设备数及订阅排错。";
+const affiliateUrl = brandData.affiliateUrl;
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqsData.map(f => ({
+    '@type': 'Question',
+    'name': f.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': f.answer
+    }
+  }))
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/faq/"
+  jsonLd={faqJsonLd}
+>
+  <div class="faq-page-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav container" aria-label="面包屑导航">
+      <ol class="breadcrumb-list">
+        <li><a href="/">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">常见问题 FAQ</li>
+      </ol>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="faq-hero container">
+      <div class="faq-hero-badge">
+        <span class="blossom-badge">🌸 答疑专区 · 8大核心解答</span>
+        <span class="hero-sub-en">FREQUENTLY ASKED QUESTIONS</span>
+      </div>
+      <h1 class="faq-h1">杏花云常见问题解答 · Clash与订阅FAQ</h1>
+      <p class="faq-lead">
+        聚合杏花云用户最为关切的 8 个核心疑问。从现代 VLESS 协议与传统 VPN 的本质区别，到 Clash Verge Rev 实战配置、Mihomo 内核支持与多端设备排错，助您快速排除连接障碍。
+      </p>
+    </header>
+
+    <div class="faq-main-content container">
+      <!-- Anzu Greeting Box -->
+      <section class="anzu-faq-intro blossom-card">
+        <div class="intro-inner">
+          <div class="intro-face">
+            <AnzuIllustration state="welcome" size={100} />
+          </div>
+          <div class="intro-text">
+            <h3>🌸 杏子的答疑小贴士</h3>
+            <p>
+              “遇到订阅无法拉取或节点超时时，别着急哦！通常 90% 的问题是因为<strong>设备系统时钟与标准时间相差超过1分钟</strong>，或者<strong>使用了不支持 VLESS 协议的陈旧旧版内核</strong>。点击下方问题展开详细解答，跟随杏子一步步排查吧！”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The 8 FAQs: Dual-Column Desktop / Single-Column Mobile -->
+      <section class="faq-accordion-section">
+        <div class="faqs-dual-wrapper" id="faqs-list-container">
+          <!-- Col 1: Questions 1 to 4 -->
+          <div class="faqs-col">
+            {faqsData.slice(0, 4).map((faq) => (
+              <details class="faq-item blossom-card" id={`faq-${faq.id}`} name="faq-group">
+                <summary class="faq-question">
+                  <span class="faq-q-num">Q{faq.id}.</span>
+                  <span class="faq-q-text">{faq.question}</span>
+                  <span class="faq-arrow">▼</span>
+                </summary>
+                <div class="faq-answer">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <!-- Col 2: Questions 5 to 8 -->
+          <div class="faqs-col">
+            {faqsData.slice(4, 8).map((faq) => (
+              <details class="faq-item blossom-card" id={`faq-${faq.id}`} name="faq-group">
+                <summary class="faq-question">
+                  <span class="faq-q-num">Q{faq.id}.</span>
+                  <span class="faq-q-text">{faq.question}</span>
+                  <span class="faq-arrow">▼</span>
+                </summary>
+                <div class="faq-answer">
+                  <p>{faq.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Quick Checklist Cards -->
+      <section class="troubleshooting-checklist blossom-card">
+        <div class="tc-head">
+          <span class="blossom-badge blossom-badge-green">排错速查清单</span>
+          <h2>三分钟排查：节点无法连接的常见原因</h2>
+        </div>
+        <div class="tc-grid">
+          <div class="tc-card">
+            <div class="tc-icon">⏱️</div>
+            <h3>1. 系统时间误差</h3>
+            <p>TLS 加密握手严格校验客户端时间戳。若手机或电脑时钟偏差大于 60 秒，会导致连接失败。请开启“自动设置时间”。</p>
+          </div>
+          <div class="tc-card">
+            <div class="tc-icon">⚙️</div>
+            <h3>2. 内核协议支持</h3>
+            <p>原版旧 Clash 缺乏 VLESS 解码。请务必使用搭载 Mihomo（Clash.Meta）现代内核的客户端（如 Clash Verge Rev）。</p>
+          </div>
+          <div class="tc-card">
+            <div class="tc-icon">📱</div>
+            <h3>3. 并发设备超限</h3>
+            <p>杏花云套餐支持 2–5 台设备同时并发。超出配额时多余设备将无法握手，可检查是否有其他设备正在后台连接。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Action CTA -->
+      <div class="faq-bottom-cta blossom-card">
+        <div class="fbc-inner">
+          <div class="fbc-text">
+            <h3>仍有其他疑问或需要选购套餐？</h3>
+            <p>您可以参阅多平台客户端详细操作指南，或直接前往杏花云官方授权收银台。</p>
+          </div>
+          <div class="fbc-btns">
+            <a href="/clients/" class="btn-secondary">Clash客户端指南</a>
+            <a href="/pricing/" class="btn-secondary">查看套餐价格</a>
+            <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="btn-primary">
+              前往官方收银台 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    const faqDetails = document.querySelectorAll('.faq-item');
+    faqDetails.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          faqDetails.forEach(other => {
+            if (other !== details && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  })();
+</script>
+
+<style>
+  .faq-page-wrapper {
+    padding-bottom: 70px;
+  }
+
+  .breadcrumb-nav {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-cta);
+  }
+
+  .breadcrumb-list .current {
+    color: var(--color-cta);
+    font-weight: 600;
+  }
+
+  .faq-hero {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 36px;
+    max-width: 900px;
+  }
+
+  .faq-hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub-en {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.12em;
+  }
+
+  .faq-h1 {
+    font-size: clamp(24px, 3.6vw, 38px);
+    color: var(--color-cta);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    line-height: 1.35;
+  }
+
+  .faq-lead {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.85;
+    color: var(--color-text-main);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .faq-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .anzu-faq-intro {
+    background: #FFFDF9;
+    border: 1px solid rgba(217, 130, 164, 0.3);
+    padding: 24px 28px;
+  }
+
+  .intro-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .intro-text h3 {
+    font-size: 17px;
+    color: var(--color-cta);
+    margin-bottom: 8px;
+  }
+
+  .intro-text p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  /* Dual-Column Accordion Layout */
+  .faqs-dual-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+
+  .faqs-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border: 1.5px solid rgba(217, 130, 164, 0.25);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--color-cta);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-cta);
+    box-shadow: 0 4px 16px rgba(217, 130, 164, 0.12);
+  }
+
+  .faq-question {
+    padding: 18px 22px;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--color-text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    list-style: none;
+    user-select: none;
+    background: #FFFDF9;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q-num {
+    color: var(--color-cta);
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .faq-q-text {
+    flex-grow: 1;
+    line-height: 1.45;
+  }
+
+  .faq-arrow {
+    font-size: 12px;
+    color: var(--color-cta);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-arrow {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 16px 22px 20px 48px;
+    background: #FFFFFF;
+    border-top: 1px dashed var(--color-border-subtle);
+  }
+
+  .faq-answer p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  /* Checklist section */
+  .troubleshooting-checklist {
+    padding: 36px 40px;
+    background: #FFFFFF;
+  }
+
+  .tc-head h2 {
+    font-size: 21px;
+    color: var(--color-text-main);
+    margin: 8px 0 20px;
+    font-family: var(--font-serif);
+  }
+
+  .tc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .tc-card {
+    background: #FFFDF9;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 22px;
+  }
+
+  .tc-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .tc-card h3 {
+    font-size: 16px;
+    color: var(--color-text-main);
+    margin: 0 0 8px;
+  }
+
+  .tc-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* Bottom CTA */
+  .faq-bottom-cta {
+    background: #FFFFFF;
+    padding: 32px 36px;
+    border: 1.5px solid rgba(217, 130, 164, 0.35);
+  }
+
+  .fbc-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .fbc-text h3 {
+    font-size: 18px;
+    color: var(--color-cta);
+    margin-bottom: 6px;
+  }
+
+  .fbc-text p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .fbc-btns {
+    display: flex;
+    gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .faqs-dual-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .tc-grid {
+      grid-template-columns: 1fr;
+    }
+    .intro-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .faq-question {
+      padding: 16px;
+    }
+    .faq-answer {
+      padding: 14px 16px 18px 16px;
+    }
+    .troubleshooting-checklist {
+      padding: 24px 18px;
+    }
+    .fbc-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .fbc-btns {
+      width: 100%;
+      flex-direction: column;
+    }
+    .fbc-btns a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

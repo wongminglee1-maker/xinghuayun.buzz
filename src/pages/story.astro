@@ -1,0 +1,695 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+
+const pageTitle = "杏花云品牌物语｜XingHua Cloud与杏花少女的云端旅程";
+const pageDesc = "走进杏花云XingHua Cloud品牌物语。探索原创日系IP「杏花少女·杏子ANZU」的云端旅程、杏花粉与奶油白设计语言、轻量经济型网络连接哲学与多元生活场景。";
+const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
+
+const storyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  'name': pageTitle,
+  'description': pageDesc,
+  'url': 'https://xinghuayun.buzz/story/',
+  'breadcrumb': {
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '首页',
+        'item': 'https://xinghuayun.buzz/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': '杏花物语',
+        'item': 'https://xinghuayun.buzz/story/'
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/story/"
+  jsonLd={storyJsonLd}
+>
+  <div class="story-page-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav container" aria-label="面包屑导航">
+      <ol class="breadcrumb-list">
+        <li><a href="/">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">杏花物语</li>
+      </ol>
+    </nav>
+
+    <!-- Hero Header: Picture-book style -->
+    <header class="story-hero container">
+      <div class="story-hero-badge">
+        <span class="blossom-badge">🌸 日系绘本 · 品牌物语</span>
+        <span class="hero-sub-jp">あんずの春風 · 雲端の物語</span>
+      </div>
+      <h1 class="story-h1">杏花物语 · 与杏子一起探索云端世界</h1>
+      <p class="story-lead">
+        在繁芜喧嚣的网络时代，我们愿借春日杏花的一缕暖风，拂去技术参数的冰冷外壳。与原创品牌向导「杏子 · ANZU」携手，开启一段轻盈、真诚且经济的全球数字连接旅程。
+      </p>
+    </header>
+
+    <div class="story-main-content container">
+      <!-- Section 1: Character Anzu -->
+      <section class="book-chapter blossom-card">
+        <div class="chapter-grid">
+          <div class="chapter-text">
+            <div class="chapter-badge">第一章 · 向导登场</div>
+            <h2>🌸 杏花少女「杏子 · ANZU」与春之守候</h2>
+            <p>
+              每一位初次踏入跨境数字网络的用户，都曾体会过面对复杂配置文件、协议名词与生涩报错时的迷茫。正因如此，杏花云孕育了属于自己的原创品牌向导——<strong>「杏子（ANZU）」</strong>。
+            </p>
+            <p>
+              杏子是一位身着素白渐变杏花粉和服、发梢点缀淡雅杏花发簪的元气少女。她既不是高深莫测的技术布道者，也不是推销昂贵方案的销售员，而是一位始终陪伴在您屏幕角落的“数字旅伴”。
+            </p>
+            <p>
+              在杏花云的生态中，杏子穿梭于客户端排错、节点延迟测算、流量预算规划等各个场景。当您不知道该选择哪款套餐时，她会以对话气泡为您剖析真实消耗；当您遇到订阅导入难题时，她会耐心地一步步提示排查。她象征着杏花云对每一位普通用户的温和关怀。
+            </p>
+          </div>
+          <div class="chapter-illo">
+            <div class="illo-box">
+              <AnzuIllustration state="welcome" size={320} />
+              <div class="character-card-meta">
+                <span class="c-name">🌸 杏子 (ANZU)</span>
+                <span class="c-desc">杏花云原创品牌向导 · 治愈系陪伴</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Visual Aesthetics -->
+      <section class="book-chapter blossom-card">
+        <div class="chapter-badge">第二章 · 视觉语言</div>
+        <h2>🎨 Blossom Girl MAX：日系自然色彩与治愈美学</h2>
+        <p class="chapter-intro-text">
+          大多数网络基础设施网站充斥着黑客暗黑风或刺眼的霓虹光晕，令人感到压抑与警惕。杏花云反其道而行之，开创了 <strong>Blossom Girl MAX</strong> 日系治愈视觉体系，从大自然汲取三原色基调：
+        </p>
+
+        <div class="color-palette-grid">
+          <div class="palette-card color-pink">
+            <div class="color-sample" style="background: #D94876;"></div>
+            <div class="palette-info">
+              <h3>🌸 杏花玫粉 (Sakura Rose)</h3>
+              <span class="color-hex">#D94876</span>
+              <p>代表探索世界的热忱、青春与生命力。作为主行动按钮与重点视觉焦点，象征着破土而出的希望与温暖。</p>
+            </div>
+          </div>
+
+          <div class="palette-card color-cream">
+            <div class="color-sample" style="background: #FFFDF9; border: 1px solid #E8DDD0;"></div>
+            <div class="palette-info">
+              <h3>🍚 暖阳奶油白 (Cream Warm)</h3>
+              <span class="color-hex">#FFFDF9</span>
+              <p>宛如春日晨曦洒在纸质和纸上的温润底色。告别纯白高反光的疲劳，传达纯粹透明、诚恳无欺的品牌态度。</p>
+            </div>
+          </div>
+
+          <div class="palette-card color-green">
+            <div class="color-sample" style="background: #526B53;"></div>
+            <div class="palette-info">
+              <h3>🌿 若草深浅绿 (Fresh Wakakusa)</h3>
+              <span class="color-hex">#526B53</span>
+              <p>嫩芽初生的高雅森林绿，代表节点连接的生机盎然与稳固信赖。常用于技术参数、协议标牌与安全提示。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Brand Philosophy -->
+      <section class="book-chapter blossom-card">
+        <div class="chapter-grid reverse">
+          <div class="chapter-illo">
+            <div class="illo-box">
+              <AnzuIllustration state="brand" size={300} />
+            </div>
+          </div>
+          <div class="chapter-text">
+            <div class="chapter-badge">第三章 · 核心哲学</div>
+            <h2>🌱 轻量连接：经济型网络服务的真实价值</h2>
+            <p>
+              在今天的网络市场中，动辄数十元甚至上百元的高昂月租屡见不鲜，但真正使用时，绝大多数用户每月消耗的流量其实不足 50GB 或 100GB。大量昂贵的流量在月底被无情清零，成为了无人问津的“数字沉没成本”。
+            </p>
+            <p>
+              杏花云深刻洞察这一痛点，坚决走<strong>“超高性价比 · 轻量化全球网络连接”</strong>路线：
+            </p>
+            <ul class="story-feature-list">
+              <li><strong>低门槛平民定价：</strong> 年付50G方案仅需 ¥12/年（折合每月仅1元），轻量版仅需 ¥3/月。让预算有限的学生、轻量查阅者轻松承受。</li>
+              <li><strong>现代化 VLESS 协议：</strong> 摒弃冗杂老旧的协议封装，以轻量现代化的指令交互提升协议穿透与流转效率，告别卡顿。</li>
+              <li><strong>周期与一次性双轨并行：</strong> 既提供按月/按年的周期阶梯方案，更推出<strong>365天1000GB一次性流量包（¥20/次）</strong>，专为低频差旅与备用网络量身定制。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Daily Life Scenarios -->
+      <section class="book-chapter blossom-card">
+        <div class="chapter-badge">第四章 · 场景旅程</div>
+        <h2>🌸 与杏子漫步：四大多元网络生活写照</h2>
+        <p class="chapter-intro-text">
+          无论您身处何种身份，杏花云都能与您的数字生活节奏同频共振：
+        </p>
+
+        <div class="story-scenarios-grid">
+          <div class="s-scene-card">
+            <div class="scene-header">
+              <span class="scene-icon">🌅</span>
+              <div class="scene-meta">
+                <h3>清晨 · 学术与知识探索</h3>
+                <span class="scene-tag">高效求知</span>
+              </div>
+            </div>
+            <p>
+              在阳光初透的书桌前，查阅 arXiv 物理前沿预印本，翻阅 Wikipedia 多语言词条，同步海外大学公开课资料。轻量稳定的网络连接，让求知欲不受阻隔。
+            </p>
+            <div class="scene-foot">
+              <span>🌸 推荐搭配：年付50G (¥12/年) · 香港/日本节点</span>
+            </div>
+          </div>
+
+          <div class="s-scene-card">
+            <div class="scene-header">
+              <span class="scene-icon">☕</span>
+              <div class="scene-meta">
+                <h3>午后 · 人工智能协同创作</h3>
+                <span class="scene-tag">生产力提升</span>
+              </div>
+            </div>
+            <p>
+              伴随着一杯浓香咖啡，与 ChatGPT 交流编程算法，使用 Claude 润色多语言商务邮件，在海外云笔记中记录创作灵感。低延迟与高连通性让 AI 灵感毫无滞涩。
+            </p>
+            <div class="scene-foot">
+              <span>🌸 推荐搭配：标准版 (¥6/月, 500GB) · 美国/新加坡节点</span>
+            </div>
+          </div>
+
+          <div class="s-scene-card">
+            <div class="scene-header">
+              <span class="scene-icon">🎬</span>
+              <div class="scene-meta">
+                <h3>傍晚 · 影音慢生活与音乐串流</h3>
+                <span class="scene-tag">高码率视听</span>
+              </div>
+            </div>
+            <p>
+              卸下一整天的疲惫，在客厅点开 YouTube 4K 自然风光纪录片，或聆听 Spotify 国际高保真音乐专辑。充沛的月度配额让视听享受不再束手束脚。
+            </p>
+            <div class="scene-foot">
+              <span>🌸 推荐搭配：专业版 (¥10/月, 1000GB) · 日本/美国节点</span>
+            </div>
+          </div>
+
+          <div class="s-scene-card">
+            <div class="scene-header">
+              <span class="scene-icon">🌙</span>
+              <div class="scene-meta">
+                <h3>深夜 · 跨国开源代码协作</h3>
+                <span class="scene-tag">极客共鸣</span>
+              </div>
+            </div>
+            <p>
+              在万籁俱寂的夜里，与全球各地的开源贡献者并肩作战。Git push/clone 秒级响应，npm 与 cargo 依赖高速拉取，让技术无界流动。
+            </p>
+            <div class="scene-foot">
+              <span>🌸 推荐搭配：轻量版 (¥3/月) / 专业版 · 香港优质线路</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Truth & Credibility Statement -->
+      <section class="book-chapter blossom-card book-statement-card">
+        <div class="chapter-badge">第五章 · 承诺与求真</div>
+        <h2>📌 诚实守诺：杏花云的真实性声明</h2>
+        <div class="statement-body">
+          <p>
+            杏花云团队深知，在这个互联网信息泥沙俱下的环境中，<strong>诚实</strong>是比任何营销文案都更为珍贵的品质。为此，我们公开承诺：
+          </p>
+          <div class="statement-rules-list">
+            <div class="st-rule">
+              <span class="st-num">1</span>
+              <div>
+                <strong>不虚构历史与创始人：</strong> 杏花云成立时间暂未公开，我们绝不杜撰“硅谷海归创立、十年专线世家”等虚假神话。
+              </div>
+            </div>
+            <div class="st-rule">
+              <span class="st-num">2</span>
+              <div>
+                <strong>不虚构专线与测速：</strong> 绝不使用PS制作的虚假跑分图表或伪造的毫秒级零延迟。所有数据均明确标注为理论与测试参考。
+              </div>
+            </div>
+            <div class="st-rule">
+              <span class="st-num">3</span>
+              <div>
+                <strong>不虚假承诺不限设备：</strong> 杏花云套餐已知最高支持 5 台并发设备，绝不将有限资源吹嘘为“无限制设备”。
+              </div>
+            </div>
+            <div class="st-rule">
+              <span class="st-num">4</span>
+              <div>
+                <strong>透明推广披露：</strong> 本站提供官方收银台直达通道，若通过推荐码注册购买，本站将严格依照透明披露原则进行标注。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Call-To-Action -->
+      <div class="story-cta-box blossom-card">
+        <div class="story-cta-inner">
+          <AnzuIllustration state="welcome" size={90} />
+          <div class="story-cta-text">
+            <h3>与杏子一起，开启属于您的云端春日旅程</h3>
+            <p>从年付12元轻量体验，到每月1000GB高阶畅联，总有一款方案恰到好处。</p>
+          </div>
+          <div class="story-cta-btns">
+            <a href="/pricing/" class="btn-secondary">浏览六款套餐</a>
+            <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="btn-primary">
+              前往官方收银台 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .story-page-wrapper {
+    padding-bottom: 70px;
+  }
+
+  .breadcrumb-nav {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-cta);
+  }
+
+  .breadcrumb-list .current {
+    color: var(--color-cta);
+    font-weight: 600;
+  }
+
+  .story-hero {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 40px;
+    max-width: 900px;
+  }
+
+  .story-hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub-jp {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.1em;
+  }
+
+  .story-h1 {
+    font-size: clamp(26px, 3.8vw, 40px);
+    color: var(--color-cta);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    line-height: 1.35;
+  }
+
+  .story-lead {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.85;
+    color: var(--color-text-main);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .story-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .book-chapter {
+    padding: 40px;
+    background: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chapter-badge {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+    background: var(--color-bg-tint);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 14px;
+    border: 1px solid rgba(217, 130, 164, 0.25);
+  }
+
+  .book-chapter h2 {
+    font-size: 22px;
+    color: var(--color-text-main);
+    margin-bottom: 18px;
+    font-family: var(--font-serif);
+  }
+
+  .chapter-intro-text {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    margin-bottom: 24px;
+  }
+
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .chapter-grid.reverse {
+    grid-template-columns: 0.75fr 1.25fr;
+  }
+
+  .chapter-text p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--color-text-main);
+    margin-bottom: 16px;
+  }
+
+  .chapter-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .chapter-illo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .illo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .character-card-meta {
+    text-align: center;
+    background: var(--color-bg-tint);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(217, 130, 164, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .c-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-cta);
+  }
+
+  .c-desc {
+    font-size: 11px;
+    color: var(--color-forest-green);
+  }
+
+  .story-feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 18px;
+    padding-left: 4px;
+  }
+
+  .story-feature-list li {
+    font-size: 14.5px;
+    line-height: 1.75;
+    position: relative;
+    padding-left: 20px;
+    color: var(--color-text-main);
+  }
+
+  .story-feature-list li::before {
+    content: '🌸';
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    top: 4px;
+  }
+
+  /* Color Palette Grid */
+  .color-palette-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .palette-card {
+    background: #FFFDF9;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .color-sample {
+    height: 90px;
+    width: 100%;
+  }
+
+  .palette-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .palette-info h3 {
+    font-size: 15px;
+    color: var(--color-text-main);
+    margin: 0;
+  }
+
+  .color-hex {
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .palette-info p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 6px 0 0;
+  }
+
+  /* Scenarios Grid */
+  .story-scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .s-scene-card {
+    background: #FFFDF9;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .scene-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scene-icon {
+    font-size: 28px;
+  }
+
+  .scene-meta h3 {
+    font-size: 16px;
+    color: var(--color-text-main);
+    margin: 0 0 4px;
+  }
+
+  .scene-tag {
+    font-size: 11px;
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+  }
+
+  .s-scene-card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--color-text-main);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .scene-foot {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--color-forest-green);
+    background: #F3F8F2;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-soft-green);
+  }
+
+  /* Statement Card */
+  .book-statement-card {
+    background: #FFFDF9;
+    border: 1px solid rgba(217, 130, 164, 0.3);
+  }
+
+  .statement-body p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    margin-bottom: 20px;
+  }
+
+  .statement-rules-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .st-rule {
+    display: flex;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--color-text-main);
+  }
+
+  .st-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background: var(--color-cta);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* Bottom CTA */
+  .story-cta-box {
+    background: #FFFFFF;
+    padding: 32px 36px;
+    border: 1.5px solid rgba(217, 130, 164, 0.35);
+  }
+
+  .story-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .story-cta-text h3 {
+    font-size: 18px;
+    color: var(--color-cta);
+    margin-bottom: 6px;
+  }
+
+  .story-cta-text p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .story-cta-btns {
+    display: flex;
+    gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .chapter-grid, .chapter-grid.reverse {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .color-palette-grid {
+      grid-template-columns: 1fr;
+    }
+    .story-scenarios-grid {
+      grid-template-columns: 1fr;
+    }
+    .statement-rules-list {
+      grid-template-columns: 1fr;
+    }
+    .book-chapter {
+      padding: 24px 20px;
+    }
+    .story-cta-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .story-cta-btns {
+      width: 100%;
+      flex-direction: column;
+    }
+    .story-cta-btns a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

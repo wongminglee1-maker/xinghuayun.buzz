@@ -1,0 +1,436 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrafficCalculator from '../components/TrafficCalculator.astro';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+import brandData from '../data/brand.json';
+
+const pageTitle = "杏花云流量计算器｜每月GB预算、套餐推荐与年度成本分析";
+const pageDesc = "杏花云流量预算测算中心。输入日常网页浏览、ChatGPT交互、YouTube 1080P/4K视听、远程会议与游戏下载时长，透明核算每日、月度及年度流量消耗，匹配最优套餐并分析每GB成本。";
+const affiliateUrl = brandData.affiliateUrl;
+
+const calculatorJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  'name': pageTitle,
+  'description': pageDesc,
+  'url': 'https://xinghuayun.buzz/calculator/',
+  'breadcrumb': {
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '首页',
+        'item': 'https://xinghuayun.buzz/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': '流量计算',
+        'item': 'https://xinghuayun.buzz/calculator/'
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/calculator/"
+  jsonLd={calculatorJsonLd}
+>
+  <div class="calculator-page-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav container" aria-label="面包屑导航">
+      <ol class="breadcrumb-list">
+        <li><a href="/">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">流量计算</li>
+      </ol>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="calculator-hero container">
+      <div class="calculator-hero-badge">
+        <span class="blossom-badge blossom-badge-green">🌸 科学测算 · 理性消费</span>
+        <span class="hero-sub-en">PRECISION TRAFFIC BUDGET ASSISTANT</span>
+      </div>
+      <h1 class="calculator-h1">杏子智能流量预算与套餐推荐助手</h1>
+      <p class="calculator-lead">
+        拒绝盲目购买过剩流量。滑动下方滑块，根据您每日的真实浏览、AI 对话、流媒体追剧与文件下载需求，实时测算月度与年度消耗，量身匹配杏花云高性价比套餐。
+      </p>
+    </header>
+
+    <div class="calculator-main-content container">
+      <!-- Section 1: The Interactive Calculator -->
+      <section class="calc-tool-section">
+        <TrafficCalculator />
+      </section>
+
+      <!-- Section 2: Transparent Estimation Formula Model -->
+      <section class="formula-section blossom-card">
+        <div class="sec-head">
+          <span class="blossom-badge">公开透明算法</span>
+          <h2>测算模型与主流网络行为基准参数</h2>
+        </div>
+        <p class="sec-intro">
+          杏花云流量计算器基于业内通行的网络协议消耗模型与实际码率建立，所有基础参数公开透明：
+        </p>
+
+        <div class="formula-grid">
+          <div class="formula-item">
+            <span class="f-icon">🌐</span>
+            <div class="f-content">
+              <strong>网页与社交通讯：约 0.15 GB / 小时</strong>
+              <p>包含移动端与桌面端常规图文阅读、新闻浏览、微信/Telegram即时文字沟通与社交应用轻量刷新。</p>
+            </div>
+          </div>
+
+          <div class="formula-item">
+            <span class="f-icon">🤖</span>
+            <div class="f-content">
+              <strong>AI 对话工具交互：约 0.08 GB / 小时</strong>
+              <p>ChatGPT、Claude、Perplexity 等文本生成与轻度代码问答。纯文本传输数据极小，即使高频使用亦极省流量。</p>
+            </div>
+          </div>
+
+          <div class="formula-item">
+            <span class="f-icon">🎬</span>
+            <div class="f-content">
+              <strong>YouTube 1080P 全高清：约 1.8 GB / 小时</strong>
+              <p>以主流 AVC/VP9 编码 60fps 码率测算；720P 约为 0.9 GB/小时，而 4K 超高清（2160P）可达 7.0 GB/小时。</p>
+            </div>
+          </div>
+
+          <div class="formula-item">
+            <span class="f-icon">💼</span>
+            <div class="f-content">
+              <strong>高清视频会议与远程协作：约 0.8 GB / 小时</strong>
+              <p>Zoom、Teams、Google Meet 双向 720P/1080P 音视频传输与屏幕共享的综合上行与下行消耗。</p>
+            </div>
+          </div>
+
+          <div class="formula-item">
+            <span class="f-icon">🎮</span>
+            <div class="f-content">
+              <strong>大文件与游戏更新：直接按设定 GB 累加</strong>
+              <p>Steam/Epic 游戏客户端更新补丁、海外开源代码库拉取（git clone）与系统镜像下载，按月一次性计入。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Periodic vs One-Time Traffic Comparison -->
+      <section class="pack-comparison-section blossom-card blossom-card-green">
+        <div class="pc-head">
+          <span class="blossom-badge blossom-badge-green">选型指南</span>
+          <h2>周期订阅 与 365天一次性流量包 如何取舍？</h2>
+        </div>
+        <div class="pc-grid">
+          <div class="pc-card">
+            <h3>🔄 周期型套餐（按月重置）</h3>
+            <div class="pc-price-tag">年付12元起 · 月付3元起</div>
+            <p>
+              <strong>适合人群：</strong> 每天都需要稳定科学上网的用户、学生党日常自习、程序员代码托管、外贸日常办公。
+            </p>
+            <ul class="styled-list">
+              <li>每月初固定获得全额配额（如 200GB 或 500GB）。</li>
+              <li>适合按月持续消费，单月大流量成本低至 ¥0.012/GB。</li>
+              <li>需注意当月未使用完的流量在月底会被自动清零。</li>
+            </ul>
+          </div>
+
+          <div class="pc-card">
+            <h3>📦 365天一次性流量包</h3>
+            <div class="pc-price-tag">¥20 / 次 · 1000GB总额</div>
+            <p>
+              <strong>适合人群：</strong> 偶尔查阅资料、差旅出行、家里已有主要网络仅作手机应急备用的用户。
+            </p>
+            <ul class="styled-list">
+              <li>1000GB 总额在 365 天内随时按需消耗，永无月末清零顾虑。</li>
+              <li>无论用 1 个月还是用满整年，总成本仅固定支出 ¥20。</li>
+              <li>并非每月1000GB，属于一次性买断数据包，用尽后重新购买即可。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Navigation Action -->
+      <div class="calc-action-banner blossom-card">
+        <div class="cab-inner">
+          <AnzuIllustration state="welcome" size={80} />
+          <div class="cab-text">
+            <h3>测算完毕？立即去挑选契合心意的方案</h3>
+            <p>杏花云全系六款套餐提供灵活多样的支付周期与设备数量支持。</p>
+          </div>
+          <div class="cab-btns">
+            <a href="/pricing/" class="btn-secondary">查看套餐价格对比</a>
+            <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="btn-primary">
+              前往官方收银台 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .calculator-page-wrapper {
+    padding-bottom: 70px;
+  }
+
+  .breadcrumb-nav {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-cta);
+  }
+
+  .breadcrumb-list .current {
+    color: var(--color-cta);
+    font-weight: 600;
+  }
+
+  .calculator-hero {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+
+  .calculator-hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub-en {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.12em;
+  }
+
+  .calculator-h1 {
+    font-size: clamp(24px, 3.6vw, 38px);
+    color: var(--color-cta);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    line-height: 1.35;
+  }
+
+  .calculator-lead {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.85;
+    color: var(--color-text-main);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .calculator-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .formula-section {
+    padding: 36px 40px;
+    background: #FFFFFF;
+  }
+
+  .sec-head h2 {
+    font-size: 21px;
+    color: var(--color-text-main);
+    margin: 8px 0 12px;
+    font-family: var(--font-serif);
+  }
+
+  .sec-intro {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .formula-item {
+    display: flex;
+    gap: 14px;
+    background: #FFFDF9;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+
+  .f-icon {
+    font-size: 26px;
+  }
+
+  .f-content strong {
+    font-size: 15px;
+    color: var(--color-text-main);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .f-content p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .pack-comparison-section {
+    padding: 36px 40px;
+  }
+
+  .blossom-card-green {
+    background: #FCFDFB;
+    border: 1.5px solid rgba(82, 107, 83, 0.25);
+  }
+
+  .pc-head h2 {
+    font-size: 21px;
+    color: var(--color-forest-green);
+    margin: 8px 0 24px;
+    font-family: var(--font-serif);
+  }
+
+  .pc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .pc-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+
+  .pc-card h3 {
+    font-size: 17px;
+    color: var(--color-text-main);
+    margin: 0 0 8px;
+  }
+
+  .pc-price-tag {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-cta);
+    background: var(--color-bg-tint);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 14px;
+  }
+
+  .pc-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-main);
+    margin-bottom: 14px;
+  }
+
+  .styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .styled-list li {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .styled-list li::before {
+    content: '🌸';
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    top: 2px;
+  }
+
+  .calc-action-banner {
+    background: #FFFFFF;
+    padding: 32px 36px;
+    border: 1.5px solid rgba(217, 130, 164, 0.35);
+  }
+
+  .cab-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .cab-text h3 {
+    font-size: 18px;
+    color: var(--color-cta);
+    margin-bottom: 6px;
+  }
+
+  .cab-text p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .cab-btns {
+    display: flex;
+    gap: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .formula-grid, .pc-grid {
+      grid-template-columns: 1fr;
+    }
+    .formula-section, .pack-comparison-section {
+      padding: 24px 18px;
+    }
+    .cab-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .cab-btns {
+      width: 100%;
+      flex-direction: column;
+    }
+    .cab-btns a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

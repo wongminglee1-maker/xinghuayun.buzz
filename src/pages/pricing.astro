@@ -1,0 +1,746 @@
+---
+import Layout from '../layouts/Layout.astro';
+import plansData from '../data/pricing.json';
+import brandData from '../data/brand.json';
+import AnzuIllustration from '../components/AnzuIllustration.astro';
+import AnzuPlanAdvisor from '../components/AnzuPlanAdvisor.astro';
+
+const pageTitle = "杏花云机场套餐价格｜3元月付、12元年付与1000GB流量购买入口";
+const pageDesc = "杏花云六款流量套餐价格与订阅购买全览。详解年付12元50G、年付24元100G、轻量版3元、标准版6元、专业版10元1000G及365天1000GB一次性流量包，附每GB成本与选型建议。";
+const affiliateUrl = brandData.affiliateUrl;
+
+const pricingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  'name': pageTitle,
+  'description': pageDesc,
+  'url': 'https://xinghuayun.buzz/pricing/',
+  'breadcrumb': {
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '首页',
+        'item': 'https://xinghuayun.buzz/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': '套餐价格',
+        'item': 'https://xinghuayun.buzz/pricing/'
+      }
+    ]
+  }
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonicalPath="/pricing/"
+  jsonLd={pricingJsonLd}
+>
+  <div class="pricing-page-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav container" aria-label="面包屑导航">
+      <ol class="breadcrumb-list">
+        <li><a href="/">首页</a></li>
+        <li class="separator">/</li>
+        <li class="current">套餐价格</li>
+      </ol>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="pricing-hero container">
+      <div class="pricing-hero-badge">
+        <span class="blossom-badge">🌸 透明资费 · 丰俭由人</span>
+        <span class="hero-sub-tag">TRANSPARENT VALUE PRICING</span>
+      </div>
+      <h1 class="pricing-h1">杏花云六款流量套餐与订阅购买方案</h1>
+      <p class="pricing-lead">
+        坚守高性价比核心定位。从年付仅需 ¥12 的极轻量方案，到每月 1000GB 的专业旗舰方案，以及 365 天有效期的一次性流量包，让每一分预算都发挥真实连接价值。
+      </p>
+    </header>
+
+    <div class="pricing-main-content container">
+      <!-- Section 1: Cycle Tabs & Filter -->
+      <section class="pricing-plans-section">
+        <div class="plans-filter-bar">
+          <button type="button" class="plan-tab active" data-filter="all">全部方案 (6)</button>
+          <button type="button" class="plan-tab" data-filter="monthly">支持月付 (3)</button>
+          <button type="button" class="plan-tab" data-filter="yearly">经济年付 (5)</button>
+          <button type="button" class="plan-tab" data-filter="one-time">一次性流量包 (1)</button>
+        </div>
+
+        <!-- 6 Cards Grid -->
+        <div class="plans-grid">
+          {plansData.map((plan) => (
+            <div
+              class={`plan-card blossom-card ${plan.id === 'standard' ? 'plan-card-featured' : ''}`}
+              data-type={plan.trafficType}
+              data-cycles={plan.availableCycles.join(',')}
+              data-devices={plan.devicesLimit}
+            >
+              <div class="plan-top-badge">
+                <span class="plan-theme-name">🌸 {plan.visualTheme}</span>
+                <span class="plan-badge-pill">{plan.badge}</span>
+              </div>
+
+              <h3 class="plan-name">{plan.name}</h3>
+              <div class="plan-traffic-highlight">{plan.trafficDisplay}</div>
+
+              <!-- Dynamic Price Display -->
+              <div class="plan-price-row">
+                {plan.id === 'annual-50g' && (
+                  <div class="price-box">
+                    <span class="price-val">¥12</span>
+                    <span class="price-unit">/ 年</span>
+                    <span class="price-sub">折合 ¥1/月 · 每GB仅需 ¥0.020</span>
+                  </div>
+                )}
+                {plan.id === 'annual-100g' && (
+                  <div class="price-box">
+                    <span class="price-val">¥24</span>
+                    <span class="price-unit">/ 年</span>
+                    <span class="price-sub">折合 ¥2/月 · 每GB仅需 ¥0.020</span>
+                  </div>
+                )}
+                {plan.id === 'lightweight' && (
+                  <div class="price-box">
+                    <span class="price-val">¥3</span>
+                    <span class="price-unit">/ 月起</span>
+                    <span class="price-sub">季付¥9 / 半年¥18 / 年付¥36 (¥0.015/GB)</span>
+                  </div>
+                )}
+                {plan.id === 'standard' && (
+                  <div class="price-box">
+                    <span class="price-val">¥6</span>
+                    <span class="price-unit">/ 月起</span>
+                    <span class="price-sub">季付¥18 / 半年¥36 / 年付¥72 (¥0.012/GB)</span>
+                  </div>
+                )}
+                {plan.id === 'pro' && (
+                  <div class="price-box">
+                    <span class="price-val">¥10</span>
+                    <span class="price-unit">/ 月起</span>
+                    <span class="price-sub">年付参考区间 ¥90–120 (¥0.0075–0.0100/GB)</span>
+                  </div>
+                )}
+                {plan.id === 'traffic-pack-365' && (
+                  <div class="price-box">
+                    <span class="price-val">¥20</span>
+                    <span class="price-unit">/ 次</span>
+                    <span class="price-sub">365天有效期内总计 1000GB (¥0.020/GB)</span>
+                  </div>
+                )}
+              </div>
+
+              <p class="plan-desc">{plan.description}</p>
+
+              <div class="plan-device-pill">
+                📱 最大支持并发：<strong>{plan.devicesLimit} 台设备</strong>
+              </div>
+
+              <ul class="plan-features-list">
+                {plan.features.map((feat) => (
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#526B53" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="plan-cta-box">
+                <a
+                  href={affiliateUrl}
+                  target="_blank"
+                  rel={brandData.affiliateRel}
+                  class="btn-primary plan-buy-btn"
+                  data-plan-name={plan.name}
+                  data-plan-price={plan.id === 'annual-50g' ? '¥12/年' : plan.id === 'annual-100g' ? '¥24/年' : plan.id === 'lightweight' ? '¥3/月' : plan.id === 'standard' ? '¥6/月' : plan.id === 'pro' ? '¥10/月' : '¥20/次'}
+                  data-plan-cycle={plan.defaultCycle}
+                >
+                  <span>立即选购</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Section 2: Complete Pricing Comparison Table -->
+      <section class="pricing-table-section blossom-card">
+        <div class="sec-title-row">
+          <span class="blossom-badge">完整资费矩阵</span>
+          <h2>六款套餐完整价格对比表</h2>
+        </div>
+        <p class="sec-desc">
+          所有价格信息严格基于杏花云公开资料收录整理，下表提供多周期与多维度对比参考：
+        </p>
+
+        <div class="table-responsive">
+          <table class="blossom-table">
+            <thead>
+              <tr>
+                <th>套餐名称</th>
+                <th>流量配置</th>
+                <th>月付</th>
+                <th>季付</th>
+                <th>半年付</th>
+                <th>年付</th>
+                <th>设备并发</th>
+                <th>每GB理论成本</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>🌸 年付50G</strong></td>
+                <td>50GB / 月</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td><strong>¥12</strong></td>
+                <td>2 台</td>
+                <td>¥0.020 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+              <tr>
+                <td><strong>🌸 年付100G</strong></td>
+                <td>100GB / 月</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td><strong>¥24</strong></td>
+                <td>3 台</td>
+                <td>¥0.020 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+              <tr>
+                <td><strong>🌸 轻量版</strong></td>
+                <td>200GB / 月</td>
+                <td><strong>¥3</strong></td>
+                <td>¥9</td>
+                <td>¥18</td>
+                <td>¥36</td>
+                <td>2 台</td>
+                <td>¥0.015 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+              <tr class="row-highlight">
+                <td><strong>🌸 标准版 (推荐)</strong></td>
+                <td>500GB / 月</td>
+                <td><strong>¥6</strong></td>
+                <td>¥18</td>
+                <td>¥36</td>
+                <td>¥72</td>
+                <td>3 台</td>
+                <td>¥0.012 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+              <tr>
+                <td><strong>🌸 专业版</strong></td>
+                <td>1000GB / 月</td>
+                <td><strong>¥10</strong></td>
+                <td>¥30</td>
+                <td>¥60</td>
+                <td>¥90–120 (参考)</td>
+                <td>5 台</td>
+                <td>¥0.0075–0.0100 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+              <tr>
+                <td><strong>🌸 365天流量包</strong></td>
+                <td>1000GB 总量</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td><strong>¥20 / 次</strong></td>
+                <td>3 台</td>
+                <td>¥0.020 / GB</td>
+                <td><a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="table-buy-link">选购</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 3: 365-Day Traffic Pack Spotlight -->
+      <section class="pack-spotlight-section blossom-card blossom-card-green">
+        <div class="pack-spotlight-grid">
+          <div class="pack-text">
+            <span class="blossom-badge blossom-badge-green">✨ 独特色彩：备用首选</span>
+            <h2>365天1000GB 一次性流量包深度解析</h2>
+            <p>
+              许多用户日常生活中已有宽带或主要网络，但在<strong>出差差旅、远程查验、学术备用或跨端轻度访问</strong>时，按月续费往往造成巨大浪费。
+            </p>
+            <div class="pack-highlights">
+              <div class="ph-item">
+                <span class="ph-icon">📅</span>
+                <div>
+                  <strong>整整 365 天有效期：</strong> 购买后长达一年有效，无需担心月底没用完被清零。
+                </div>
+              </div>
+              <div class="ph-item">
+                <span class="ph-icon">💰</span>
+                <div>
+                  <strong>一次性支付 ¥20：</strong> 仅需一杯咖啡钱，即可获得 1000GB 充沛数据配额。
+                </div>
+              </div>
+              <div class="ph-item">
+                <span class="ph-icon">⚠️</span>
+                <div>
+                  <strong>重要真实属性界定：</strong> 该套餐为“365天内总计1000GB”，并非每月1000GB，亦非永久不过期。用完或满一年需重新购买。
+                </div>
+              </div>
+            </div>
+            <div class="pack-cta-row">
+              <a href={affiliateUrl} target="_blank" rel="sponsored nofollow noopener noreferrer" class="btn-primary">
+                选购 365天1000G 流量包 (¥20) →
+              </a>
+            </div>
+          </div>
+          <div class="pack-illo">
+            <AnzuIllustration state="budget" size={260} />
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Anzu Smart Plan Advisor -->
+      <section class="advisor-section">
+        <AnzuPlanAdvisor />
+      </section>
+
+      <!-- Section 5: Purchasing & Affiliate Disclosure -->
+      <section class="disclosure-section blossom-card">
+        <h3>📌 购买渠道与推广关系披露</h3>
+        <p>
+          本站展示的六款套餐价格与参数均严格核实并整理自杏花云官方公开资料。点击选购按钮将跳转至杏花云官方授权收银台（URL 统一搭载推广标识 <code>code=dNrfos55</code>）。本站明确披露推广返佣关系，并遵循 <code>rel="sponsored nofollow noopener noreferrer"</code> 国际规范，不向用户收取任何中间差价或附加费用。
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (function() {
+    const tabs = document.querySelectorAll('.plan-tab');
+    const cards = document.querySelectorAll('.plan-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else if (filter === 'monthly') {
+            const cycles = card.getAttribute('data-cycles') || '';
+            card.style.display = cycles.includes('monthly') ? 'flex' : 'none';
+          } else if (filter === 'yearly') {
+            const cycles = card.getAttribute('data-cycles') || '';
+            card.style.display = cycles.includes('yearly') ? 'flex' : 'none';
+          } else if (filter === 'one-time') {
+            const type = card.getAttribute('data-type');
+            card.style.display = type === 'one-time' ? 'flex' : 'none';
+          }
+        });
+      });
+    });
+
+    const buyButtons = document.querySelectorAll('.plan-buy-btn');
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-plan-name');
+        const price = btn.getAttribute('data-plan-price');
+        const cycle = btn.getAttribute('data-plan-cycle');
+        window.dispatchEvent(new CustomEvent('select-plan', {
+          detail: { name, price, cycle }
+        }));
+      });
+    });
+  })();
+</script>
+
+<style>
+  .pricing-page-wrapper {
+    padding-bottom: 70px;
+  }
+
+  .breadcrumb-nav {
+    padding-top: 24px;
+    padding-bottom: 12px;
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-cta);
+  }
+
+  .breadcrumb-list .current {
+    color: var(--color-cta);
+    font-weight: 600;
+  }
+
+  .pricing-hero {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 40px;
+    max-width: 900px;
+  }
+
+  .pricing-hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+    letter-spacing: 0.12em;
+  }
+
+  .pricing-h1 {
+    font-size: clamp(24px, 3.6vw, 38px);
+    color: var(--color-cta);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+    line-height: 1.35;
+  }
+
+  .pricing-lead {
+    font-size: clamp(15px, 1.8vw, 17px);
+    line-height: 1.85;
+    color: var(--color-text-main);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .pricing-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .plans-filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .plan-tab {
+    padding: 9px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #FFFFFF;
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .plan-tab:hover, .plan-tab.active {
+    background: var(--color-cta);
+    color: #FFFFFF;
+    border-color: var(--color-cta);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .plan-card {
+    background: #FFFFFF;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .plan-card-featured {
+    border: 2px solid var(--color-cta);
+    background: #FFFDF9;
+  }
+
+  .plan-top-badge {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .plan-theme-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-forest-green);
+  }
+
+  .plan-badge-pill {
+    font-size: 11px;
+    background: var(--color-bg-tint);
+    color: var(--color-cta);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+  }
+
+  .plan-name {
+    font-size: 20px;
+    color: var(--color-text-main);
+    margin: 0 0 8px;
+    font-family: var(--font-serif);
+  }
+
+  .plan-traffic-highlight {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-cta);
+    margin-bottom: 14px;
+  }
+
+  .price-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--color-border-subtle);
+  }
+
+  .price-val {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-text-main);
+    line-height: 1;
+  }
+
+  .price-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-left: 4px;
+  }
+
+  .price-sub {
+    font-size: 12px;
+    color: var(--color-forest-green);
+    margin-top: 6px;
+  }
+
+  .plan-desc {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin-bottom: 14px;
+  }
+
+  .plan-device-pill {
+    font-size: 12px;
+    background: #F3F8F2;
+    color: var(--color-forest-green);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+  }
+
+  .plan-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 0 24px;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  .plan-features-list li {
+    font-size: 13px;
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .plan-cta-box a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricing-table-section {
+    padding: 36px 40px;
+    background: #FFFFFF;
+  }
+
+  .sec-title-row {
+    margin-bottom: 8px;
+  }
+
+  .sec-title-row h2 {
+    font-size: 21px;
+    color: var(--color-text-main);
+    margin-top: 8px;
+    font-family: var(--font-serif);
+  }
+
+  .sec-desc {
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .blossom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+
+  .blossom-table th, .blossom-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--color-border-subtle);
+    text-align: left;
+  }
+
+  .blossom-table th {
+    background: #FFF4F7;
+    color: var(--color-cta);
+    font-weight: 700;
+  }
+
+  .row-highlight {
+    background: #FFFDF9;
+  }
+
+  .table-buy-link {
+    color: var(--color-cta);
+    font-weight: 700;
+  }
+
+  .pack-spotlight-section {
+    padding: 36px 40px;
+  }
+
+  .blossom-card-green {
+    background: #FCFDFB;
+    border: 1.5px solid rgba(82, 107, 83, 0.25);
+  }
+
+  .pack-spotlight-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .pack-text h2 {
+    font-size: 22px;
+    color: var(--color-forest-green);
+    margin: 12px 0 14px;
+    font-family: var(--font-serif);
+  }
+
+  .pack-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text-main);
+    margin-bottom: 20px;
+  }
+
+  .pack-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .ph-item {
+    display: flex;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .ph-icon {
+    font-size: 20px;
+  }
+
+  .pack-illo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .disclosure-section {
+    padding: 24px 30px;
+    background: #FFFDF9;
+    border: 1px solid rgba(217, 130, 164, 0.25);
+  }
+
+  .disclosure-section h3 {
+    font-size: 15px;
+    color: var(--color-cta);
+    margin-bottom: 8px;
+  }
+
+  .disclosure-section p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pack-spotlight-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+    .pricing-table-section, .pack-spotlight-section {
+      padding: 24px 18px;
+    }
+  }
+</style>

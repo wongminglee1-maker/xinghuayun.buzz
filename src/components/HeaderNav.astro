@@ -30,14 +30,14 @@ const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
     <nav class="desktop-nav" aria-label="全站桌面导航">
       <ul class="nav-links">
         <li><a href="/" class={currentPath === '/' ? 'active' : ''}>首页</a></li>
-        <li><a href="/#brand-story">杏花物语</a></li>
-        <li><a href="/#global-nodes">全球节点</a></li>
-        <li><a href="/#pricing-plans">套餐价格</a></li>
-        <li><a href="/#traffic-calculator">流量计算</a></li>
+        <li><a href="/story/" class={currentPath.startsWith('/story') ? 'active' : ''}>杏花物语</a></li>
+        <li><a href="/nodes/" class={currentPath.startsWith('/nodes') ? 'active' : ''}>全球节点</a></li>
+        <li><a href="/pricing/" class={currentPath.startsWith('/pricing') ? 'active' : ''}>套餐价格</a></li>
+        <li><a href="/calculator/" class={currentPath.startsWith('/calculator') ? 'active' : ''}>流量计算</a></li>
         <li><a href="/clients/" class={currentPath.startsWith('/clients') ? 'active' : ''}>Clash指南</a></li>
         <li><a href="/articles/" class={currentPath.startsWith('/articles') ? 'active' : ''}>阅读文章</a></li>
-        <li><a href="/about/" class={currentPath === '/about/' ? 'active' : ''}>关于杏花云</a></li>
-        <li><a href="/#faq-section">FAQ</a></li>
+        <li><a href="/about/" class={currentPath.startsWith('/about') ? 'active' : ''}>关于杏花云</a></li>
+        <li><a href="/faq/" class={currentPath.startsWith('/faq') ? 'active' : ''}>FAQ</a></li>
       </ul>
     </nav>
 
@@ -76,15 +76,14 @@ const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
     </div>
     <ul class="mobile-nav-links">
       <li><a href="/" class={currentPath === '/' ? 'active' : ''}>首页</a></li>
-      <li><a href="/#brand-story">杏花物语与六大优势</a></li>
-      <li><a href="/#global-nodes">全球网络节点</a></li>
-      <li><a href="/#pricing-plans">六款套餐与价格</a></li>
-      <li><a href="/#plan-advisor">智能套餐助手</a></li>
-      <li><a href="/#traffic-calculator">流量预算计算器</a></li>
-      <li><a href="/clients/">Clash与客户端指南</a></li>
-      <li><a href="/articles/">原创阅读中心</a></li>
-      <li><a href="/about/">关于杏花云</a></li>
-      <li><a href="/#faq-section">常见问题 FAQ</a></li>
+      <li><a href="/story/" class={currentPath.startsWith('/story') ? 'active' : ''}>杏花物语</a></li>
+      <li><a href="/nodes/" class={currentPath.startsWith('/nodes') ? 'active' : ''}>全球节点</a></li>
+      <li><a href="/pricing/" class={currentPath.startsWith('/pricing') ? 'active' : ''}>套餐价格</a></li>
+      <li><a href="/calculator/" class={currentPath.startsWith('/calculator') ? 'active' : ''}>流量计算</a></li>
+      <li><a href="/clients/" class={currentPath.startsWith('/clients') ? 'active' : ''}>Clash指南</a></li>
+      <li><a href="/articles/" class={currentPath.startsWith('/articles') ? 'active' : ''}>阅读文章</a></li>
+      <li><a href="/about/" class={currentPath.startsWith('/about') ? 'active' : ''}>关于杏花云</a></li>
+      <li><a href="/faq/" class={currentPath.startsWith('/faq') ? 'active' : ''}>FAQ</a></li>
     </ul>
     <div class="mobile-drawer-cta">
       <a
@@ -329,6 +328,12 @@ const affiliateUrl = "https://varnexa.lingdongaff.com/#/?code=dNrfos55";
     .mobile-nav-links a:hover, .mobile-nav-links a.active {
       background: var(--color-bg-tint);
       color: var(--color-cta);
+    }
+
+    .mobile-nav-links a.active {
+      font-weight: 700;
+      border-left: 3px solid var(--color-cta);
+      padding-left: 11px;
     }
 
     .mobile-drawer-cta {

@@ -17,9 +17,14 @@ if (fs.existsSync(sitemap0)) {
 // 2. Audit all generated HTML files for SEO hygiene
 const expectedPages = [
   'index.html',
-  'about/index.html',
+  'story/index.html',
+  'nodes/index.html',
+  'pricing/index.html',
+  'calculator/index.html',
   'clients/index.html',
   'articles/index.html',
+  'about/index.html',
+  'faq/index.html',
   'articles/clash-airport-client-selection-2026/index.html',
   'articles/clash-node-purchase-guide/index.html',
   'articles/stable-clash-subscription/index.html',
@@ -76,7 +81,7 @@ expectedPages.forEach(relPath => {
 });
 
 if (auditErrors === 0) {
-  console.log('\n🎉 ALL 10 PRODUCTION PAGES PASSED STATIC SEO AUDIT WITH ZERO DEFECTS!\n');
+  console.log('\n🎉 ALL 15 PRODUCTION PAGES PASSED STATIC SEO AUDIT WITH ZERO DEFECTS!\n');
 } else {
   console.error(`\n❌ Total SEO audit issues found: ${auditErrors}\n`);
   process.exit(1);
