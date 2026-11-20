@@ -735,32 +735,43 @@ const faqJsonLd = {
     </div>
   </section>
 
-  <!-- CHAPTER 15: 36 COMPREHENSIVE FAQS -->
+  <!-- CHAPTER 15: 8 TARGETED CLASH & CLIENT FAQS -->
   <section class="story-section container" id="faq-section">
     <div class="section-header">
-      <span class="blossom-badge sub-tag">14 · 常见问题解答</span>
-      <h2>杏花云机场常见问题FAQ</h2>
-      <p>精选36项真实、完整且具有实际价值的问答，解答您关于品牌、价格、VLESS、客户端与多设备的全部疑惑。</p>
+      <span class="blossom-badge sub-tag">🌸 客户端与配置答疑</span>
+      <h2>杏花云Clash客户端与订阅常见问题</h2>
+      <p>跟随杏花少女了解Clash订阅、VLESS客户端、多平台设备配置及常见连接问题。</p>
     </div>
 
-    <!-- FAQ Search / Filter Input -->
-    <div class="faq-search-box">
-      <input type="text" id="faq-search-input" placeholder="🔍 输入关键词搜索问题（如：3元、年付、VLESS、Clash、设备数...）" aria-label="搜索FAQ问题" />
-    </div>
-
-    <div class="faqs-list" id="faqs-list-container">
-      {faqsData.map((faq) => (
-        <details class="faq-item blossom-card" id={`faq-${faq.id}`} data-category={faq.category}>
-          <summary class="faq-question">
-            <span class="faq-q-num">Q{faq.id}.</span>
-            <span class="faq-q-text">{faq.question}</span>
-            <span class="faq-arrow">▼</span>
-          </summary>
-          <div class="faq-answer">
-            <p>{faq.answer}</p>
-          </div>
-        </details>
-      ))}
+    <div class="faqs-dual-wrapper" id="faqs-list-container">
+      <div class="faqs-col">
+        {faqsData.slice(0, 4).map((faq) => (
+          <details class="faq-item blossom-card" id={`faq-${faq.id}`} name="faq-group">
+            <summary class="faq-question">
+              <span class="faq-q-num">Q{faq.id}.</span>
+              <span class="faq-q-text">{faq.question}</span>
+              <span class="faq-arrow">▼</span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+      <div class="faqs-col">
+        {faqsData.slice(4, 8).map((faq) => (
+          <details class="faq-item blossom-card" id={`faq-${faq.id}`} name="faq-group">
+            <summary class="faq-question">
+              <span class="faq-q-num">Q{faq.id}.</span>
+              <span class="faq-q-text">{faq.question}</span>
+              <span class="faq-arrow">▼</span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>
@@ -807,24 +818,19 @@ const faqJsonLd = {
       });
     });
 
-    // 3. FAQ Live Filter
-    const searchInput = document.getElementById('faq-search-input');
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        faqItems.forEach(item => {
-          const qText = item.querySelector('.faq-q-text')?.textContent.toLowerCase() || '';
-          const aText = item.querySelector('.faq-answer')?.textContent.toLowerCase() || '';
-          if (!query || qText.includes(query) || aText.includes(query)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
+    // 3. FAQ Accordion Single-open behavior
+    const faqDetails = document.querySelectorAll('.faq-item');
+    faqDetails.forEach(details => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          faqDetails.forEach(other => {
+            if (other !== details && other.open) {
+              other.open = false;
+            }
+          });
+        }
       });
-    }
+    });
   })();
 </script>
 
@@ -1682,19 +1688,35 @@ const faqJsonLd = {
     box-shadow: 0 6px 18px rgba(169, 80, 112, 0.12);
   }
 
-  .faqs-list {
+  .faqs-dual-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .faqs-col {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    max-width: 900px;
-    margin: 0 auto;
+    gap: 12px;
+  }
+
+  @media (max-width: 820px) {
+    .faqs-dual-wrapper {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
   }
 
   .faq-item {
     background: #FFFFFF;
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border-subtle);
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    min-height: 54px;
+    overflow: hidden;
   }
 
   .faq-item[open] {
@@ -1706,7 +1728,8 @@ const faqJsonLd = {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 16px 20px;
+    padding: 14px 18px;
+    min-height: 54px;
     cursor: pointer;
     user-select: none;
     list-style: none;
@@ -1728,12 +1751,14 @@ const faqJsonLd = {
     font-weight: 700;
     color: var(--color-text-main);
     flex: 1;
+    line-height: 1.4;
   }
 
   .faq-arrow {
     font-size: 10px;
     color: var(--color-text-muted);
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
   }
 
   .faq-item[open] .faq-arrow {
@@ -1742,10 +1767,28 @@ const faqJsonLd = {
   }
 
   .faq-answer {
-    padding: 0 20px 18px 44px;
+    display: none;
+    padding: 0 18px 16px 18px;
     font-size: 14px;
     line-height: 1.7;
     color: var(--color-text-muted);
+    border-top: 1px dashed rgba(169, 80, 112, 0.15);
+    margin-top: 2px;
+    padding-top: 10px;
+    animation: blossomFaqSlide 0.25s ease-out;
+  }
+
+  .faq-item[open] .faq-answer {
+    display: block !important;
+  }
+
+  .faq-item:not([open]) .faq-answer {
+    display: none !important;
+  }
+
+  @keyframes blossomFaqSlide {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* RESPONSIVE STYLES */
