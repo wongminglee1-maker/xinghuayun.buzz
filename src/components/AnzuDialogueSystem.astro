@@ -38,7 +38,7 @@ const dialogues = {
   </div>
 
   <button type="button" class="anzu-reopen-pill" id="anzu-dialogue-reopen" style="display: none;" aria-label="展开杏子对话向导">
-    <span class="anzu-reopen-icon">🌸</span>
+    <img src="/assets/images/anzu-brand-card.png" alt="🌸" class="anzu-reopen-avatar" width="22" height="22" />
     <span class="anzu-reopen-text">杏子向导</span>
   </button>
 </div>
@@ -220,6 +220,15 @@ const dialogues = {
   .anzu-reopen-pill:hover {
     background: var(--color-bg-tint);
     transform: translateY(-2px);
+  }
+
+  .anzu-reopen-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
   }
 
   @media (max-width: 768px) {

@@ -107,11 +107,7 @@ const faqJsonLd = {
       <!-- Hero Character Illustration -->
       <div class="hero-character-box">
         <div class="hero-anzu-card">
-          <AnzuIllustration state="welcome" size={310} />
-          <div class="anzu-caption">
-            <span class="c-name">🌸 杏子 (ANZU)</span>
-            <span class="c-desc">杏花云原创品牌向导</span>
-          </div>
+          <AnzuIllustration state="welcome" size="100%" alt="🌸 杏子 (ANZU) 杏花云原创品牌向导" />
         </div>
       </div>
     </div>
@@ -946,33 +942,23 @@ const faqJsonLd = {
   .hero-character-box {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .hero-anzu-card {
-    background: linear-gradient(135deg, rgba(255, 249, 240, 0.9) 0%, rgba(248, 225, 233, 0.9) 100%);
-    border: 2px solid var(--color-sakura-pink);
-    border-radius: var(--radius-lg);
-    padding: 24px 20px;
-    box-shadow: 0 16px 36px -4px rgba(169, 80, 112, 0.16);
-    text-align: center;
-    position: relative;
-  }
-
-  .anzu-caption {
-    margin-top: 12px;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
     display: flex;
-    flex-direction: column;
-  }
-
-  .c-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--color-cta);
-  }
-
-  .c-desc {
-    font-size: 11.5px;
-    color: var(--color-forest-green);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
   }
 
   /* STORY SECTIONS */

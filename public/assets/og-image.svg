@@ -13,6 +13,7 @@
 
   <rect width="1200" height="630" fill="url(#bgGrad)" />
   <circle cx="950" cy="315" r="300" fill="url(#glow)" />
+  <image href="/assets/images/anzu-brand-card.png" x="780" y="120" width="350" height="350" preserveAspectRatio="xMidYMid meet" />
 
   <!-- Floating Blossom Decors -->
   <text x="100" y="120" font-size="48">🌸</text>
